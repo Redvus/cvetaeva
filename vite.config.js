@@ -10,28 +10,28 @@ export default defineConfig({
             // open: !('SANDBOX_URL' in process.env || 'CODESANDBOX_HOST' in process.env) // Open if it's not a CodeSandbox
         },
     build: {
-        sourcemap: true, // Add sourcemap
+        // sourcemap: true, // Add sourcemap
         outDir: '../dist/', // Output in the dist/ folder
         // emptyOutDir: true, // Empty the folder first
         rollupOptions: {
             output: {
                 // chunkFileNames: 'assets/js/[name]-[hash].js',
                 // entryFileNames: 'assets/js/[name]-[hash].js',
-                chunkFileNames: 'assets/games/cvetaeva/js/app-min.js',
-                entryFileNames: 'assets/games/cvetaeva/js/app-min.js',
+                chunkFileNames: 'js/app-min.js',
+                entryFileNames: 'js/app-min.js',
 
                 assetFileNames: ({name}) => {
                     if (/\.(gif|jpg|jpe?g|png|svg)$/.test(name ?? '')){
-                        return 'assets/games/cvetaeva/images/[name]-[hash][extname]';
+                        return 'images/[name]-[hash][extname]';
                     }
 
                     if (/\.css$/.test(name ?? '')) {
-                        return 'assets/games/cvetaeva/css/main.css';
+                        return 'css/main.css';
                     }
 
                     // default value
                     // ref: https://rollupjs.org/guide/en/#outputassetfilenames
-                    return 'assets/games/cvetaeva/[name]-[hash][extname]';
+                    return '[name]-[hash][extname]';
                 },
             },
         }
