@@ -1,6 +1,11 @@
+import { gsap } from "gsap";
+import { Question } from "./Question.js";
+import { ArrowsAll } from "./ArrowsAll.js";
+import { Settings } from "./Settings.js";
+
 // Европа
 
-const
+export const
     questionLoad = new Question(),
     arrowBackLoad = new ArrowsAll(),
     settingsLoad = new Settings(),
@@ -21,7 +26,7 @@ function localSaveEurope (questLocalNum, questLocalValue) {
     localStorage.setItem('progressEuropeAll', JSON.stringify(progressISEurope_1Sum));
 }
 
-function questionCat_1_0() {
+export function questionCat_1_0() {
     let answerWrightNum = 0;
 
     questionLoad.questionBlockFind('europeFindID');
@@ -174,7 +179,7 @@ function questionCat_1_0() {
     }
 }
 
-function questionCat_1_1() {
+export function questionCat_1_1() {
     let answerWrightNum = 1;
 
     if (localStorage.getItem('progressISEurope_1') === null ||
