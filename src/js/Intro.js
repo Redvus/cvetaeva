@@ -11,11 +11,12 @@ export class Intro {
             wrapperTopTitle = document.createElement('div')
         ;
         introBack.className = 'wrapper__intro';
-        wrapperTopTitle.className = 'wrapper__top_title';
+        wrapperTop.className += ' wrapper__top_intro';
+        wrapperTopTitle.className = 'wrapper__top_title wrapper__top_title--intro';
         wrapperBack.appendChild(introBack);
 
         wrapperTopTitle.innerHTML = `
-            <h1>Игросказы</h1>
+            <h1>Марина Цветаева:<br />путешествие в поэзию</h1>
         `;
         wrapperTop.appendChild(wrapperTopTitle);
 
@@ -46,6 +47,7 @@ export class Intro {
                 })
                 .from(wrapperBackBlock, {
                     duration: 0.4,
+                    delay: '-0.1',
                     autoAlpha: 0
                 })
                 .from(wrapperBottomMenu, {

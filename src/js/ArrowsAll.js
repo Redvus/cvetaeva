@@ -1,10 +1,9 @@
 import { gsap } from "gsap";
 
-export class ArrowsAll {
+class ArrowsAll {
 
     arrowBack() {
-        const
-            containerArrowBack = document.createElement('a'),
+        const containerArrowBack = document.createElement('a'),
             wrapper = document.querySelector('.wrapper')
         ;
         containerArrowBack.className = 'wrapper__service_arrow';
@@ -180,3 +179,5 @@ export class ArrowsAll {
         settingsClickAnim();
     }
 }
+
+export { ArrowsAll };

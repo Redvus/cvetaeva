@@ -3,6 +3,15 @@
 =============================*/
 
 @font-face {
+    font-family: "ft22 Normal";
+    src: local("ft22 Normal"),
+    url("../fonts/ft22/ft22.woff2") format("woff2"),
+    url("../fonts/ft22/ft22.woff") format("woff");
+    font-style:normal;
+    font-weight:400;
+}
+
+@font-face {
     font-family: "Kurale";
     src: local("Kurale"),
     url("../fonts/Kurale/Kurale.woff2") format("woff2"),
@@ -13,8 +22,8 @@
 
 $primary-font:          "Kurale";
 $primary-font-second:   "Kurale";
-$heading-font:          "Kurale";
-$heading-font-second:   "Kurale";
+$heading-font:          "ft22 Normal";
+$heading-font-second:   "ft22 Normal";
 
 $body-font-color     : $secondary;
 
@@ -135,6 +144,7 @@ h3 {
 h4 {
     @extend %hx;
     font-size: $font-size-h4;
+    line-height: 0.2;
 }
 
 h5 {

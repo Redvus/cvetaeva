@@ -2,12 +2,10 @@ import { gsap } from "gsap";
 import { ArrowsAll } from "./ArrowsAll.js"
 import { Settings } from "./Settings.js";
 import { Category } from "./Category.js";
-import { introDev } from "./main.js";
-import { localSetEurope } from "./main.js";
 import { questionCat_1_1 } from "./questCat_1.js";
 
 /* Category */
-export function categoryDev() {
+function categoryDev() {
     const
         wrapper = document.querySelector('.wrapper'),
         wrapperBottom = document.querySelector('.wrapper__bottom'),

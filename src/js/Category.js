@@ -8,7 +8,7 @@ export class Category {
             categoryBlock = document.createElement('div'),
             categoryBlockInside = document.createElement('div'),
             wrapperTopTitle = document.createElement('div'),
-            categoryStarsCount = '15'
+            categoryStarsCount = '20'
         ;
         categoryBlock.className = 'container__category';
         categoryBlock.id = `category${categoryID}`;

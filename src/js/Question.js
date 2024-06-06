@@ -343,7 +343,8 @@ export class Question {
             answerRightVar = ['Правильно!', 'Все верно!', 'Именно так!', 'Точно так!', 'Так держать!'],
             answerRightVarView = answerRightVar[Math.floor(Math.random() * answerRightVar.length)],
             answerBlockWrongText = document.getElementById('answerWrong'),
-            answerNextClick = document.createElement('div')
+            answerNextClick = document.createElement('div'),
+            soundsLoad = new Sounds()
         ;
 
         let answerVar_1 = document.getElementById('answerVar_1'),
@@ -439,7 +440,7 @@ export class Question {
                             let tl = gsap.timeline();
                             answerLiRight[i].className += 'question__block_list--right';
                             answerLiRight[i].style.userSelect = 'none';
-                            // soundsLoad.rightAnswer('assets/games/igroskazy/sounds/rightAnswer_1.ogg');
+                            soundsLoad.rightAnswer('./sounds/rightAnswer_1.ogg');
                             tl
                                 .to(el, {
                                     top: '9%',
@@ -462,7 +463,7 @@ export class Question {
                             let tl = gsap.timeline();
                             answerLiRight[i].className += 'question__block_list--wrong';
                             answerLiRight[i].style.userSelect = 'none';
-                            // soundsLoad.rightAnswer('assets/games/igroskazy/sounds/wrongAnswer.ogg');
+                            soundsLoad.rightAnswer('./sounds/wrongAnswer.ogg');
                             tl
                                 .to(el, {
                                     top: '9%',
@@ -485,7 +486,7 @@ export class Question {
                             let tl = gsap.timeline();
                             answerLiRight[i].className += 'question__block_list--wrong';
                             answerLiRight[i].style.userSelect = 'none';
-                            // soundsLoad.rightAnswer('assets/games/igroskazy/sounds/wrongAnswer.ogg');
+                            soundsLoad.rightAnswer('./sounds/wrongAnswer.ogg');
                             tl
                                 .to(el, {
                                     top: '9%',
@@ -508,7 +509,7 @@ export class Question {
                             let tl = gsap.timeline();
                             answerLiRight[i].className += 'question__block_list--wrong';
                             answerLiRight[i].style.userSelect = 'none';
-                            // soundsLoad.rightAnswer('assets/games/igroskazy/sounds/wrongAnswer.ogg');
+                            soundsLoad.rightAnswer('./sounds/wrongAnswer.ogg');
                             tl
                                 .to(el, {
                                     top: '9%',

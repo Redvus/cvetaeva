@@ -47,7 +47,7 @@ $introTitleSymbolWidth: calc(#{$containerWidth} / 11);
 $introTitleSymbolLeft: calc((-#{$containerWidth} / 11) / 5.8);
 
 $introButtonTextColor: $secondary;
-$introButtonTextColorHover: $primary;
+$introButtonTextColorHover: $secondary;
 
 // Settings
 $buttonWidth: 2.5rem;
