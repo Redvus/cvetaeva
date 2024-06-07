@@ -10,10 +10,10 @@ export class Intro {
             wrapperTop = document.querySelector('.wrapper__top'),
             wrapperTopTitle = document.createElement('div')
         ;
-        introBack.className = 'wrapper__intro';
+        // introBack.className = 'wrapper__intro';
         wrapperTop.className += ' wrapper__top_intro';
         wrapperTopTitle.className = 'wrapper__top_title wrapper__top_title--intro';
-        wrapperBack.appendChild(introBack);
+        // wrapperBack.appendChild(introBack);
 
         wrapperTopTitle.innerHTML = `
             <h1>Марина Цветаева:<br />путешествие в поэзию</h1>
@@ -33,7 +33,7 @@ export class Intro {
         const
             introTitleBottom = document.getElementById('introTitleBottom'),
             wrapperBottomMenu = document.querySelectorAll('.wrapper__bottom_menu > li'),
-            wrapperBackBlock = document.querySelector('.wrapper__back'),
+            wrapperIntro = document.querySelector('.wrapper__intro'),
             wrapperTitle = document.querySelector('.wrapper__top_title')
         ;
 
@@ -42,17 +42,18 @@ export class Intro {
             tl
                 .from(wrapperTitle, {
                     duration: 0.4,
+                    delay: 0.2,
                     autoAlpha: 0,
                     y: '-10%'
                 })
-                .from(wrapperBackBlock, {
-                    duration: 0.4,
-                    delay: '-0.1',
-                    autoAlpha: 0
-                })
+                // .from(wrapperIntro, {
+                //     duration: 0.4,
+                //     delay: '-0.1',
+                //     autoAlpha: 0
+                // })
                 .from(wrapperBottomMenu, {
                     duration: 0.4,
-                    delay: '-0.6',
+                    delay: '-0.1',
                     stagger: '0.05',
                     autoAlpha: 0
                 })

@@ -11,16 +11,19 @@ class Game {
 
     constructor() {
         this.initLayout();
-        // this.initGame();
+        this.initGame();
         this.initMobile();
-        this.initCategory();
+        // this.initCategory();
     }
 
     initLayout() {
         document.getElementById('app').innerHTML = `
             <div class="container"></div>
             <div class="wrapper__top"></div>
-            <div class="wrapper__back"></div>
+            <div class="wrapper__back">
+                <div class="wrapper__intro"></div>
+                <div class="wrapper__category_back"></div>
+            </div>
             <div class="wrapper__bottom"></div>
             <div class="container-quest"></div>
         `;
@@ -32,6 +35,8 @@ class Game {
         this.wrapperBack = document.querySelector('.wrapper__back');
         this.containerQuest = document.querySelector('.container-quest');
         this.backgroundMusicID = document.getElementById('backgroundMusicID');
+        this.wrapperIntro = document.querySelector('.wrapper__intro');
+        this.wrapperCategoryBack = document.querySelector('.wrapper__category_back');
         this.arrowBackLoad = new ArrowsAll();
         this.screenBrowserWidth = 400;
         this.soundsLoad = new Sounds();
@@ -45,10 +50,22 @@ class Game {
             clickLoadGame = document.getElementById('clickLoadGame'),
             clickAuthors = document.getElementById('clickAboutAuthors'),
             clickAbout = document.getElementById('clickAboutLibrary'),
-            wrapperIntro = document.querySelector('.wrapper__intro'),
             wrapperBottomMenu = document.querySelector('.wrapper__bottom_menu'),
             wrapperTopTitle = document.querySelector('.wrapper__top_title')
         ;
+
+        // categoryAllBack.className = 'wrapper__category_back';
+        // categoryAllBack.innerHTML = `
+        //     <img src="images/c_categoryBack_3.jpg" alt="">
+        // `;
+        // this.wrapperBack.appendChild(categoryAllBack);
+
+        gsap.to(this.wrapperIntro, {
+            duration: 0.5,
+            // delay: '-0.1',
+            autoAlpha: 1,
+            zIndex: 1
+        });
 
         clickLoadGame.addEventListener('click', () => {
 
@@ -64,7 +81,21 @@ class Game {
             let tl = gsap.timeline({
                 onComplete: () => {
                     this.wrapperTop.innerHTML = '';
-                    this.wrapperBack.removeChild(wrapperIntro);
+                    gsap.to(this.wrapperIntro, {
+                        duration: '0.5',
+                        // delay: '0.2',
+                        autoAlpha: 0,
+                        zIndex: '-1'
+                    });
+                    gsap.to(this.wrapperCategoryBack, {
+                        // duration: '0.5',
+                        delay: '0.2',
+                        autoAlpha: 1,
+                        zIndex: 1
+                    });
+                    // setTimeout(() => {
+                    //     this.wrapperBack.removeChild(wrapperIntro);
+                    // }, 800);
                     this.wrapperBottom.removeChild(wrapperBottomMenu);
                     this.initCategory();
                 }
@@ -75,7 +106,7 @@ class Game {
                     duration: 0.3,
                     y: '-10%'
                 })
-                .to([wrapperBottomMenu, wrapperIntro], {
+                .to(wrapperBottomMenu, {
                     duration: 0.3,
                     // delay: '-0.2',
                     autoAlpha: 0
@@ -88,7 +119,7 @@ class Game {
                 onComplete: () => {
                     this.wrapperTop.innerHTML = '';
                     this.wrapperTop.className = 'wrapper__top';
-                    this.wrapperBack.removeChild(wrapperIntro);
+                    this.wrapperBack.removeChild(this.wrapperIntro);
                     this.wrapperBottom.removeChild(wrapperBottomMenu);
                     this.authorsStart();
                 }
@@ -99,7 +130,7 @@ class Game {
                     duration: 0.3,
                     y: '-10%'
                 })
-                .to([wrapperBottomMenu, wrapperIntro], {
+                .to([wrapperBottomMenu, this.wrapperIntro], {
                     duration: 0.3,
                     // delay: '-0.4',
                     autoAlpha: 0
@@ -247,7 +278,6 @@ class Game {
 
         const
             containerCategory = document.querySelector('.container__category'),
-            categoryAllBack = document.createElement('picture'),
             categorySecretHit = document.getElementById('categorySecretHit'),
             categoryChildLove = document.getElementById('categoryChildLove'),
             categoryThreeFaces = document.getElementById('categoryThreeFaces')
@@ -258,25 +288,20 @@ class Game {
             progressThreeFacesQuestSum = JSON.parse(localStorage.getItem('progressThreeFacesAll'))
         ;
 
-        categoryAllBack.className = 'wrapper__category_back';
-        categoryAllBack.innerHTML = `
-        <img src="images/c_categoryBack_3.jpg" alt="">
-    `;
-        this.wrapper.appendChild(categoryAllBack);
         const catBack = document.querySelector('.wrapper__category_back');
 
         function categoryAnimation() {
             let tl = gsap.timeline();
             tl
-                .from(catBack, {
-                    autoAlpha: 0,
-                    duration: 0.6,
-                    delay: '-0.2'
-                })
+                // .from(catBack, {
+                //     autoAlpha: 0,
+                //     duration: 0.6,
+                //     delay: '-0.2'
+                // })
                 .from([categorySecretHit, categoryChildLove, categoryThreeFaces], {
                     autoAlpha: 0,
                     duration: 0.4,
-                    delay: '-0.1',
+                    delay: '0.3',
                     // y: "-0.5rem",
                     stagger: 0.1
                 })
@@ -292,11 +317,25 @@ class Game {
             let tl = gsap.timeline({
                 onComplete: () => {
                     this.wrapperBottom.removeChild(arrowBackClick);
-                    this.wrapperBottom.removeChild(settingButton);
+                    this.wrapperBottom.removeChild(settingsClick);
                     this.container.removeChild(categorySecretHit);
                     this.container.removeChild(categoryChildLove);
                     this.container.removeChild(categoryThreeFaces);
-                    this.wrapper.removeChild(catBack);
+                    gsap.to(this.wrapperCategoryBack, {
+                        duration: '0.5',
+                        delay: '0.1',
+                        autoAlpha: 0,
+                        zIndex: '-1'
+                    });
+                    // gsap.to(this.wrapperIntro, {
+                    //     duration: '0.5',
+                    //     delay: '0.1',
+                    //     autoAlpha: 1,
+                    //     zIndex: 1
+                    // });
+                    // setTimeout(() => {
+                    //     this.wrapperBack.removeChild(catBack);
+                    // }, 2000);
                     this.initGame();
                 }
             });
@@ -308,11 +347,10 @@ class Game {
                 // })
                 .to([
                     arrowBackClick,
-                    settingButton,
+                    settingsClick,
                     categorySecretHit,
                     categoryChildLove,
-                    categoryThreeFaces,
-                    catBack], {
+                    categoryThreeFaces], {
                     autoAlpha: 0,
                     delay: '-0.1',
                     stagger: 0.07
@@ -323,22 +361,24 @@ class Game {
         //Settings
         arrowBackLoad.clearStorage();
         const
-            settingButton = document.getElementById('settingsClick'),
+            settingsClick = document.getElementById('settingsClick'),
             setProgressCat_1 = document.getElementById('progressSecretHitValue'),
             setProgressCat_2 = document.getElementById('progressChildLoveValue'),
             setProgressCat_3 = document.getElementById('progressThreeFacesValue'),
             wrapperTopTitle = document.querySelector('.wrapper__top')
         ;
 
-        this.wrapperBottom.appendChild(settingButton);
-        settingButton.addEventListener('click', () => {
+        this.wrapperBottom.appendChild(settingsClick);
+        settingsClick.addEventListener('click', () => {
             settingsLoad.settingsBlock();
             const
                 settingsClearButton = document.getElementById('clearProgressButton'),
-                settingsBack = document.querySelector('.wrapper__lightbox'),
+                settingsLightbox = document.querySelector('.wrapper__lightbox'),
+                settingsBack = document.querySelector('.wrapper__lightbox_back'),
                 settingsBlock = document.querySelector('.wrapper__lightbox_block'),
                 settingsTitle = document.querySelector('.wrapper__lightbox_title'),
-                settingsClose = document.getElementById('settingsCloseButton')
+                settingsClose = document.getElementById('settingsCloseButton'),
+                settingsCloseArray = [settingsClose, settingsBack]
             ;
 
             settingsClearButton.addEventListener('click', () => {
@@ -359,7 +399,7 @@ class Game {
 
                 let tl = gsap.timeline({
                     onComplete: () => {
-                        this.wrapper.removeChild(settingsBack);
+                        this.wrapper.removeChild(settingsLightbox);
                     }
                 });
                 tl
@@ -380,29 +420,32 @@ class Game {
                 ;
             });
 
-            settingsClose.addEventListener('click', () => {
-                let tl = gsap.timeline({
-                    onComplete: () => {
-                        this.wrapper.removeChild(settingsBack);
-                    }
+            for (let i = 0; i < settingsCloseArray.length; i++) {
+                settingsCloseArray[i].addEventListener('click', () => {
+                    let tl = gsap.timeline({
+                        onComplete: () => {
+                            this.wrapper.removeChild(settingsLightbox);
+                        }
+                    });
+                    tl
+                        .to(settingsTitle, {
+                            duration: 0.3,
+                            y: '-10%',
+                            autoAlpha: 0
+                        })
+                        .to(settingsBlock, {
+                            duration: 0.3,
+                            y: '3%',
+                            autoAlpha: 0
+                        })
+                        .to(settingsBack, {
+                            duration: 0.3,
+                            autoAlpha: 0
+                        })
+                    ;
                 });
-                tl
-                    .to(settingsTitle, {
-                        duration: 0.3,
-                        y: '-10%',
-                        autoAlpha: 0
-                    })
-                    .to(settingsBlock, {
-                        duration: 0.3,
-                        y: '3%',
-                        autoAlpha: 0
-                    })
-                    .to(settingsBack, {
-                        duration: 0.3,
-                        autoAlpha: 0
-                    })
-                ;
-            });
+            }
+
         });
 
         //categoryCat_1 load
@@ -411,7 +454,7 @@ class Game {
             let tl = gsap.timeline({
                 onComplete: () => {
                     this.wrapperBottom.removeChild(arrowBackClick);
-                    this.wrapperBottom.removeChild(settingButton);
+                    this.wrapperBottom.removeChild(settingsClick);
                     this.container.removeChild(categorySecretHit);
                     this.container.removeChild(categoryChildLove);
                     this.container.removeChild(categoryThreeFaces);
@@ -428,7 +471,7 @@ class Game {
             tl
                 .to([
                     arrowBackClick,
-                    settingButton,
+                    settingsClick,
                     categorySecretHit,
                     categoryChildLove,
                     categoryThreeFaces,
@@ -446,7 +489,7 @@ class Game {
             let tl = gsap.timeline({
                 onComplete: () => {
                     this.wrapperBottom.removeChild(arrowBackClick);
-                    this.wrapperBottom.removeChild(settingButton);
+                    this.wrapperBottom.removeChild(settingsClick);
                     this.container.removeChild(categorySecretHit);
                     this.container.removeChild(categoryChildLove);
                     this.container.removeChild(categoryThreeFaces);
@@ -463,7 +506,7 @@ class Game {
             tl
                 .to([
                     arrowBackClick,
-                    settingButton,
+                    settingsClick,
                     categorySecretHit,
                     categoryChildLove,
                     categoryThreeFaces,
@@ -481,7 +524,7 @@ class Game {
             let tl = gsap.timeline({
                 onComplete: () => {
                     this.wrapperBottom.removeChild(arrowBackClick);
-                    this.wrapperBottom.removeChild(settingButton);
+                    this.wrapperBottom.removeChild(settingsClick);
                     this.container.removeChild(categorySecretHit);
                     this.container.removeChild(categoryChildLove);
                     this.container.removeChild(categoryThreeFaces);
@@ -498,7 +541,7 @@ class Game {
             tl
                 .to([
                     arrowBackClick,
-                    settingButton,
+                    settingsClick,
                     categorySecretHit,
                     categoryChildLove,
                     categoryThreeFaces,

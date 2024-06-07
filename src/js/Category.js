@@ -14,19 +14,17 @@ export class Category {
         categoryBlock.id = `category${categoryID}`;
         categoryBlock.innerHTML = `
             <div class="category__main">
-                <div class="category__main_image">
-                    <div class="category__main_title">
-                        <h3>${categoryTitle}</h3>
-                    </div>
-                    <div class="category__main_stars">
-                        <?xml version="1.0" encoding="UTF-8"?>
-                            <svg id="categoryStar" class="category__main_star" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 253.09 240.7">
-                              <polygon points="126.54 0 165.65 79.23 253.09 91.94 189.82 153.61 204.75 240.7 126.54 199.58 48.34 240.7 63.27 153.61 0 91.94 87.44 79.23 126.54 0" stroke-width="0"/>
-                            </svg>
-                        <i class="fas fa-star"></i>
-                        <div class="category__main_value">
-                            <span id="progress${categoryID}Value"></span>&nbsp;/&nbsp;${categoryStarsCount}
-                        </div>
+                <div class="category__main_title">
+                    <h3>${categoryTitle}</h3>
+                </div>
+                <div class="category__main_stars">
+                    <?xml version="1.0" encoding="UTF-8"?>
+                        <svg id="categoryStar" class="category__main_star" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 253.09 240.7">
+                          <polygon points="126.54 0 165.65 79.23 253.09 91.94 189.82 153.61 204.75 240.7 126.54 199.58 48.34 240.7 63.27 153.61 0 91.94 87.44 79.23 126.54 0" stroke-width="0"/>
+                        </svg>
+                    <i class="fas fa-star"></i>
+                    <div class="category__main_value">
+                        <span id="progress${categoryID}Value"></span>&nbsp;/&nbsp;${categoryStarsCount}
                     </div>
                 </div>
             </div>

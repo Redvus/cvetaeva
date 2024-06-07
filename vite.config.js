@@ -11,7 +11,7 @@ export default defineConfig({
         },
     build: {
         // sourcemap: true, // Add sourcemap
-        outDir: '../dist/assets/games/cavetaeva/', // Output in the dist/ folder
+        outDir: '../dist/', // Output in the dist/ folder
         // emptyOutDir: true, // Empty the folder first
         rollupOptions: {
             output: {

@@ -23,5 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 Icon?
-/static/images/
-/static/sounds/
+static/sounds/
+static/images/
+static/assets/

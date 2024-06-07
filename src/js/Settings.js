@@ -5,13 +5,16 @@ export class Settings {
     settingsBlock() {
         const
             wrapper = document.querySelector('.wrapper'),
+            settingsLightbox = document.createElement('div'),
             settingsBack = document.createElement('div'),
             settingsBlock = document.createElement('div'),
             settingsTitle = document.createElement('div'),
             settingsButtons = document.createElement('div'),
             settingsText = document.createElement('div')
         ;
-        settingsBack.className = 'wrapper__lightbox';
+
+        settingsLightbox.className = 'wrapper__lightbox';
+        settingsBack.className = 'wrapper__lightbox_back';
         settingsBlock.className = 'wrapper__lightbox_block';
         settingsTitle.className = 'wrapper__lightbox_title';
         settingsButtons.className = 'wrapper__lightbox_buttons';
@@ -19,19 +22,23 @@ export class Settings {
         settingsText.innerHTML = `
             Весь игровой процесс будет сброшен и вы начнете игру с начала
         `;
+
         settingsButtons.innerHTML = `
             <a href="javascript:void(0);" class="wrapper__lightbox_button" id="clearProgressButton">Сбросить прогресс</a>
 <!--            <a href="javascript:void(0);" class="wrapper__lightbox_button" id="turnOfSoundButton">Выключить музыку</a>-->
         `;
+
         settingsTitle.innerHTML = `
             <h3 class="wrapper__lightbox_title-text">Настройки</h3>
             <a href="javascript:void(0);" class="wrapper__lightbox_close" id="settingsCloseButton"></a>
         `;
-        settingsBack.appendChild(settingsBlock);
-        settingsBack.appendChild(settingsTitle);
+
+        settingsLightbox.appendChild(settingsBack);
+        settingsLightbox.appendChild(settingsBlock);
+        settingsLightbox.appendChild(settingsTitle);
         settingsBlock.appendChild(settingsText);
         settingsBlock.appendChild(settingsButtons);
-        wrapper.appendChild(settingsBack);
+        wrapper.appendChild(settingsLightbox);
 
         const
             settingsTextBlock = document.getElementById('settingsText'),
@@ -53,13 +60,19 @@ export class Settings {
         function settingsBlockAnim() {
             let tl = gsap.timeline();
             const
-                settingsBack = document.querySelector('.wrapper__lightbox'),
+                settingsLightbox = document.querySelector('.wrapper__lightbox'),
+                settingsBack = document.querySelector('.wrapper__lightbox_back'),
                 settingsBlock = document.querySelector('.wrapper__lightbox_block'),
                 settingsTitleBlock = document.querySelector('.wrapper__lightbox_title')
             ;
             tl
+                .from(settingsLightbox, {
+                    duration: 0.3,
+                    autoAlpha: 0
+                })
                 .from(settingsBack, {
                     duration: 0.3,
+                    delay: '-0.1',
                     autoAlpha: 0
                 })
                 .from(settingsTitleBlock, {
