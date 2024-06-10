@@ -2,7 +2,7 @@ import { gsap } from "gsap";
 import { ArrowsAll } from "./ArrowsAll.js"
 import { Settings } from "./Settings.js";
 import { Category } from "./Category.js";
-import { questionCat_1_1 } from "./questCat_1.js";
+import { questionCat_1_1 } from "./QuestCat_1.js";
 
 /* Category */
 function categoryDev() {

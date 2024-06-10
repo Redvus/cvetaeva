@@ -1,6 +1,6 @@
 import { gsap } from "gsap";
 
-export class Category {
+class Category {
 
     categoryMain(categoryID, categoryTitle) {
         const
@@ -168,3 +168,5 @@ export class Category {
         catQuestAnim();
     }
 }
+
+export { Category }

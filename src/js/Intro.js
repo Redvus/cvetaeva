@@ -1,6 +1,6 @@
 import { gsap } from "gsap";
 
-export class Intro {
+class Intro {
 
     introStart() {
         const
@@ -63,3 +63,5 @@ export class Intro {
         introAnim();
     }
 }
+
+export { Intro }

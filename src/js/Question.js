@@ -1,9 +1,9 @@
 import { gsap } from "gsap";
 import { ArrowsAll } from "./ArrowsAll.js";
 import { Sounds } from "./Sounds.js";
-import { categoryDev } from "./categoryLoad.js";
 
-export class Question {
+
+class Question {
 
     questionBlock(questTitle,
                   questQuestion,
@@ -89,7 +89,7 @@ export class Question {
                     wrapperBack.removeChild(wrapperCategoryBack);
                     wrapperBack.removeChild(wrapperCategoryBackTop);
                     wrapperTop.removeChild(wrapperCategoryTitle);
-                    categoryDev();
+
                 }
             });
             tl
@@ -525,3 +525,5 @@ export class Question {
         }
     }
 }
+
+export { Question };

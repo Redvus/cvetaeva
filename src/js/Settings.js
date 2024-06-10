@@ -35,7 +35,7 @@ export class Settings {
 
         settingsLightbox.appendChild(settingsBack);
         settingsLightbox.appendChild(settingsBlock);
-        settingsLightbox.appendChild(settingsTitle);
+        settingsBlock.appendChild(settingsTitle);
         settingsBlock.appendChild(settingsText);
         settingsBlock.appendChild(settingsButtons);
         wrapper.appendChild(settingsLightbox);

@@ -6,14 +6,15 @@ import { ArrowsAll } from "./ArrowsAll.js"
 import { Settings } from "./Settings.js";
 import { Sounds } from "./Sounds.js";
 import { Category } from "./Category.js";
+import { QuestCat_1 } from "./QuestCat_1.js";
 
 class Game {
 
     constructor() {
         this.initLayout();
-        this.initGame();
+        // this.initGame();
         this.initMobile();
-        // this.initCategory();
+        this.initCategory();
     }
 
     initLayout() {
@@ -119,7 +120,21 @@ class Game {
                 onComplete: () => {
                     this.wrapperTop.innerHTML = '';
                     this.wrapperTop.className = 'wrapper__top';
-                    this.wrapperBack.removeChild(this.wrapperIntro);
+                    gsap.to(this.wrapperIntro, {
+                        duration: '0.5',
+                        // delay: '0.2',
+                        autoAlpha: 0,
+                        zIndex: '-1'
+                    });
+                    gsap.to(this.wrapperCategoryBack, {
+                        // duration: '0.5',
+                        delay: '0.2',
+                        autoAlpha: 1,
+                        zIndex: 1
+                    });
+                    // setTimeout(() => {
+                    //     this.wrapperBack.removeChild(wrapperIntro);
+                    // }, 800);
                     this.wrapperBottom.removeChild(wrapperBottomMenu);
                     this.authorsStart();
                 }
@@ -130,7 +145,7 @@ class Game {
                     duration: 0.3,
                     y: '-10%'
                 })
-                .to([wrapperBottomMenu, this.wrapperIntro], {
+                .to(wrapperBottomMenu, {
                     duration: 0.3,
                     // delay: '-0.4',
                     autoAlpha: 0
@@ -143,7 +158,21 @@ class Game {
                 onComplete: () => {
                     this.wrapperTop.innerHTML = '';
                     this.wrapperTop.className = 'wrapper__top';
-                    this.wrapperBack.removeChild(wrapperIntro);
+                    gsap.to(this.wrapperIntro, {
+                        duration: '0.5',
+                        // delay: '0.2',
+                        autoAlpha: 0,
+                        zIndex: '-1'
+                    });
+                    gsap.to(this.wrapperCategoryBack, {
+                        // duration: '0.5',
+                        delay: '0.2',
+                        autoAlpha: 1,
+                        zIndex: 1
+                    });
+                    // setTimeout(() => {
+                    //     this.wrapperBack.removeChild(wrapperIntro);
+                    // }, 800);
                     this.wrapperBottom.removeChild(wrapperBottomMenu);
                     this.aboutStart();
                 }
@@ -154,7 +183,7 @@ class Game {
                     duration: 0.3,
                     y: '-10%'
                 })
-                .to([wrapperBottomMenu, wrapperIntro], {
+                .to(wrapperBottomMenu, {
                     duration: 0.3,
                     // delay: '-0.4',
                     autoAlpha: 0
@@ -192,6 +221,12 @@ class Game {
                     this.container.removeChild(containerAbout);
                     this.wrapperTop.removeChild(wrapperTopTitle);
                     this.wrapperBack.removeChild(wrapperAboutBack);
+                    gsap.to(this.wrapperCategoryBack, {
+                        duration: '0.5',
+                        delay: '0.1',
+                        autoAlpha: 0,
+                        zIndex: '-1'
+                    });
                     this.initGame();
                 }
             });
@@ -238,8 +273,12 @@ class Game {
                     this.container.removeChild(containerAbout);
                     this.wrapperTop.removeChild(wrapperTopTitle);
                     this.wrapperBack.removeChild(wrapperAboutBack);
-                    this.container.style = 'none';
-
+                    gsap.to(this.wrapperCategoryBack, {
+                        duration: '0.5',
+                        delay: '0.1',
+                        autoAlpha: 0,
+                        zIndex: '-1'
+                    });
                     this.initGame();
                 }
             });
@@ -264,7 +303,8 @@ class Game {
         const
             categoryLoad = new Category(),
             arrowBackLoad = new ArrowsAll(),
-            settingsLoad = new Settings()
+            settingsLoad = new Settings(),
+            questionLoads = new QuestCat_1()
         ;
 
         this.container.className = 'container container-category';
@@ -458,14 +498,14 @@ class Game {
                     this.container.removeChild(categorySecretHit);
                     this.container.removeChild(categoryChildLove);
                     this.container.removeChild(categoryThreeFaces);
-                    this.wrapper.removeChild(catBack);
+                    // this.wrapper.removeChild(catBack);
                     this.container.className = 'container';
                     categoryLoad.categoryQuest(
                         'Европа',
                         'wrapperBackEurope',
                         'wrapperBackEuropeTop');
                     this.localSetCat_1();
-                    questionCat_1_0();
+                    questionLoads.questionCat_1_1();
                 }
             });
             tl
