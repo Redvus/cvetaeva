@@ -1,7 +1,8 @@
 import { gsap } from "gsap";
 import { ArrowsAll } from "./ArrowsAll.js";
 import { Sounds } from "./Sounds.js";
-
+import {Game} from "./app.js";
+import {CategoryLoad} from "./CategoryLoad.js";
 
 class Question {
 
@@ -13,44 +14,46 @@ class Question {
         const
             arrowBackLoad = new ArrowsAll(),
             soundsLoad = new Sounds(),
-            containerQuest = document.querySelector('.container-quest'),
-            containerQuestBottom = document.createElement('div'),
+            containerQuest = document.querySelector('.container'),
+            containerCategoryBlock = document.createElement('div'),
             wrapperCategoryTitle = document.querySelector('.wrapper__top_title'),
             wrapperTop = document.querySelector('.wrapper__top'),
-            containerQuestBottomTitle = document.createElement('h2'),
-            containerQuestBottomText = document.createElement('div'),
-            containerQuestBottomButtons = document.createElement('ul')
+            containerCategoryBlockTitle = document.createElement('h2'),
+            containerCategoryBlockText = document.createElement('div'),
+            containerCategoryBlockButtons = document.createElement('ul'),
+            wrapperBottom = document.querySelector('.wrapper__bottom')
         ;
 
-        containerQuestBottom.className = 'container-quest__bottom';
-        containerQuestBottomTitle.className = 'container-quest__bottom_title';
-        containerQuestBottomText.className = 'container-quest__bottom_text';
-        containerQuestBottomButtons.className = 'container-quest__bottom_buttons';
+        containerCategoryBlock.className = 'container__category'
+        containerQuest.appendChild(containerCategoryBlock);
+        containerCategoryBlockTitle.className = 'container-quest__bottom_title';
+        containerCategoryBlockText.className = 'container-quest__bottom_text';
+        containerCategoryBlockButtons.className = 'container-quest__bottom_buttons';
 
         if (questTitle) {
-            containerQuestBottomText.className = 'container-quest__bottom_text container-quest__bottom_text--short';
-            containerQuestBottomTitle.innerHTML = `${questTitle}`;
-            containerQuestBottomText.innerHTML = `
+            containerCategoryBlockText.className = 'container-quest__bottom_text container-quest__bottom_text--short';
+            containerCategoryBlockTitle.innerHTML = `${questTitle}`;
+            containerCategoryBlockText.innerHTML = `
                 <p class="container-quest__bottom_text--quest">${questQuestion}</p>
             `;
         } else {
-            containerQuestBottomTitle.className = 'container-quest__bottom_title container-quest__bottom_title--short';
-            containerQuestBottomText.innerHTML = `
+            containerCategoryBlockTitle.className = 'container-quest__bottom_title container-quest__bottom_title--short';
+            containerCategoryBlockText.innerHTML = `
                 <p class="container-quest__bottom_text--quest">${questQuestion}</p>
             `;
         }
 
-        containerQuestBottomButtons.innerHTML = `
+        containerCategoryBlockButtons.innerHTML = `
             <li id="answerVar_1"><a href="javascript:void(0);">${answerVar_1}</a></li>
             <li id="answerVar_2"><a href="javascript:void(0);">${answerVar_2}</a></li>
             <li id="answerVar_3"><a href="javascript:void(0);">${answerVar_3}</a></li>
         `;
 
-        containerQuest.appendChild(containerQuestBottom);
+        containerQuest.appendChild(containerCategoryBlock);
 
-        containerQuestBottom.appendChild(containerQuestBottomText);
-        containerQuestBottom.appendChild(containerQuestBottomButtons);
-        containerQuestBottomText.appendChild(containerQuestBottomTitle);
+        containerCategoryBlock.appendChild(containerCategoryBlockText);
+        containerCategoryBlock.appendChild(containerCategoryBlockButtons);
+        containerCategoryBlockText.appendChild(containerCategoryBlockTitle);
 
         const
             questButtonLi_1 = document.getElementById('answerVar_1'),
@@ -66,69 +69,37 @@ class Question {
             el.style.top = positionLiTop[idx];
         });
 
-        arrowBackLoad.arrowBackQuest();
+        // arrowBackLoad.arrowBackQuest();
         // arrowBackLoad.arrowSetting();
 
         const
-            arrowBackClick = document.getElementById('arrowBack'),
             settingsClick = document.getElementById('settingsClick'),
             containerQuestBlock = document.querySelector('.container-quest'),
             containerQuestBlockBottom = document.querySelector('.container-quest__bottom'),
-            containerQuestBottomTextDiv = document.querySelector('.container-quest__bottom_text'),
-            containerQuestBottomButton = document.querySelectorAll('.container-quest__bottom_buttons > li'),
+            containerCategoryBlockTextDiv = document.querySelector('.container-quest__bottom_text'),
+            containerCategoryBlockButton = document.querySelectorAll('.container-quest__bottom_buttons > li'),
             wrapperBackPreloader = document.querySelector('.wrapper__preloader'),
             wrapperCategoryBack = document.querySelector('.wrapper__back_category'),
             wrapperBack = document.querySelector('.wrapper__back'),
             wrapperCategoryBackTop = document.querySelector('.wrapper__back_category--top')
         ;
 
-        arrowBackClick.addEventListener('click', () => {
-            let tl = gsap.timeline({
-                onComplete: () => {
-                    containerQuestBlock.removeChild(containerQuestBlockBottom);
-                    wrapperBack.removeChild(wrapperCategoryBack);
-                    wrapperBack.removeChild(wrapperCategoryBackTop);
-                    wrapperTop.removeChild(wrapperCategoryTitle);
-
-                }
-            });
-            tl
-                .to([
-                    arrowBackClick,
-                    settingsClick,
-                    wrapperCategoryTitle,
-                    containerQuestBlockBottom], {
-                    autoAlpha: 0,
-                    delay: '-0.1'
-                })
-                .to([
-                    wrapperCategoryBack,
-                    wrapperCategoryBackTop,
-                    containerQuestBottom], {
-                    autoAlpha: 0,
-                    duration: '0.6',
-                    delay: '-0.1',
-                    // scale: 1.05
-                })
-            ;
-        });
-
         function questionBlockAnim() {
             let tl = gsap.timeline();
 
                 tl
-                    .from(containerQuestBottom, {
+                    .from(containerCategoryBlock, {
                         autoAlpha: 0,
                         duration: 0.8,
                         delay: '-0.2',
                         scale: 0.95
                     })
-                    .from(containerQuestBottomTextDiv, {
+                    .from(containerCategoryBlockTextDiv, {
                         autoAlpha: 0,
                         duration: 0.4,
                         // delay: '-0.1'
                     })
-                    .from(containerQuestBottomButton, {
+                    .from(containerCategoryBlockButton, {
                         autoAlpha: 0,
                         duration: 0.4,
                         delay: '-0.2',
@@ -138,199 +109,52 @@ class Question {
 
         }
         questionBlockAnim();
-    }
 
-    questionBlockSimple(questTitle,
-                  questQuestion,
-                  answerVar_1,
-                  answerVar_2,
-                  answerVar_3) {
-        const
-            containerQuestBottom = document.querySelector('.container-quest__bottom'),
-            containerQuestBottomTitle = document.createElement('h2'),
-            containerQuestBottomText = document.createElement('div'),
-            containerQuestBottomButtons = document.createElement('ul')
-        ;
-
-        containerQuestBottomTitle.className = 'container-quest__bottom_title';
-        containerQuestBottomText.className = 'container-quest__bottom_text';
-        containerQuestBottomButtons.className = 'container-quest__bottom_buttons';
-
-        if (questTitle) {
-            containerQuestBottomText.className = 'container-quest__bottom_text container-quest__bottom_text--short';
-            containerQuestBottomTitle.innerHTML = `${questTitle}`;
-            containerQuestBottomText.innerHTML = `
-                <p class="container-quest__bottom_text--quest">${questQuestion}</p>
-            `;
-        } else {
-            containerQuestBottomTitle.className = 'container-quest__bottom_title container-quest__bottom_title--short';
-            containerQuestBottomText.innerHTML = `
-                <p class="container-quest__bottom_text--quest">${questQuestion}</p>
-            `;
-        }
-
-        containerQuestBottomButtons.innerHTML = `
-            <li id="answerVar_1"><a href="javascript:void(0);">${answerVar_1}</a></li>
-            <li id="answerVar_2"><a href="javascript:void(0);">${answerVar_2}</a></li>
-            <li id="answerVar_3"><a href="javascript:void(0);">${answerVar_3}</a></li>
-        `;
-
-        containerQuestBottom.appendChild(containerQuestBottomText);
-        containerQuestBottom.appendChild(containerQuestBottomButtons);
-        containerQuestBottomText.appendChild(containerQuestBottomTitle);
-
-        const
-            questButtonLi_1 = document.getElementById('answerVar_1'),
-            questButtonLi_2 = document.getElementById('answerVar_2'),
-            questButtonLi_3 = document.getElementById('answerVar_3'),
-            questButtonList = [questButtonLi_1, questButtonLi_2, questButtonLi_3],
-            questButtonLiPosition = ['9%', '38%', '67%'],
-            questButtonLi = document.querySelectorAll('.container-quest__bottom_buttons > li'),
-            positionLiTop = questButtonLiPosition.sort(() => Math.floor(Math.random() * questButtonLiPosition.length))
-        ;
-
-        questButtonList.forEach((el, idx) => {
-            el.style.top = positionLiTop[idx];
-        });
-
-        const
-            containerQuestBottomTextDiv = document.querySelector('.container-quest__bottom_text'),
-            containerQuestBottomButton = document.querySelectorAll('.container-quest__bottom_buttons > li')
-        ;
-
-        function questionBlockAnim() {
-            let tl = gsap.timeline();
-
-            tl
-                .from(containerQuestBottomTextDiv, {
-                    autoAlpha: 0,
-                    duration: 0.4,
-                    // delay: '-0.1'
-                })
-                .from(containerQuestBottomButton, {
-                    autoAlpha: 0,
-                    duration: 0.4,
-                    delay: '-0.2',
-                    stagger: '0.05'
-                })
-            ;
-
-        }
-        questionBlockAnim();
-    }
-
-    questionBlockFind(questionFindItems) {
-        const
-            containerQuest = document.querySelector('.container-quest'),
-            containerQuestBottom = document.createElement('div'),
-            wrapperCategoryBack = document.querySelector('.wrapper__back_category'),
-            wrapperBack = document.querySelector('.wrapper__back'),
-            wrapperCategoryTitle = document.querySelector('.wrapper__top_title'),
-            wrapperTop = document.querySelector('.wrapper__top'),
-            containerQuestBottomCells = document.createElement('ul'),
-            containerQuestBottomText = document.createElement('div'),
-            containerFind = document.createElement('div'),
-            containerFindTop = document.createElement('div'),
-            settingsLoad = new Settings()
-        ;
-
-        // containerQuest.className = 'container-quest';
-        containerQuestBottom.className = 'container-quest__bottom container-quest__find';
-        containerQuestBottomCells.className = 'container-quest__find_cells';
-        containerQuestBottomText.className = 'container-quest__find_text';
-        containerFind.className = 'container-find';
-        containerFindTop.className = 'container-find container-find--top';
-        containerFindTop.id = questionFindItems;
-
-        containerQuestBottomText.innerHTML = `
-            <p class="container-quest__find_text--quest">Найдите спрятавшихся персонажей и артефакты из сказок:</p>
-        `;
-
-        // wrapper.appendChild(containerQuest);
-        wrapperBack.appendChild(containerFind);
-        wrapper.appendChild(containerFindTop);
-        containerQuest.appendChild(containerQuestBottom);
-
-        if (containerQuestBottom !== null) {
-            arrowBackLoad.arrowBackQuest();
-            // arrowBackLoad.arrowSetting();
-        }
-
-        const containerQuestFind = document.querySelector('.container-quest__find');
-        containerQuestFind.appendChild(containerQuestBottomText);
-        containerQuestFind.appendChild(containerQuestBottomCells);
-
-        const
-            arrowBackClick = document.getElementById('arrowBack'),
-            settingsClick = document.getElementById('settingsClick'),
-            containerQuestBlock = document.querySelector('.container-quest'),
-            containerQuestBottomTextDiv = document.querySelector('.container-quest__find_text'),
-            containerQuestBottomButton = document.querySelectorAll('.container-quest__find_buttons > li'),
-            wrapperCategoryBackTop = document.querySelector('.wrapper__back_category--top'),
-            containerFindBlock = document.querySelector('.container-find'),
-            containerFindTopBlock = document.querySelector('.container-find--top'),
-            wrapperBackPreloader = document.querySelector('.wrapper__preloader')
-        ;
+        arrowBackLoad.arrowBack();
+        const arrowBackClick = document.getElementById('arrowBack');
+        wrapperBottom.appendChild(arrowBackClick);
 
         arrowBackClick.addEventListener('click', () => {
             let tl = gsap.timeline({
                 onComplete: () => {
-                    // wrapperTop.removeChild(wrapperCategoryTitle);
-                    // wrapper.removeChild(containerQuestBlock);
-                    containerQuestBlock.removeChild(containerQuestFind);
-                    wrapperBack.removeChild(wrapperCategoryBack);
-                    wrapperBack.removeChild(wrapperCategoryBackTop);
-                    wrapperBack.removeChild(containerFindBlock);
-                    wrapperBack.removeChild(wrapperBackPreloader);
-                    wrapper.removeChild(containerFindTopBlock);
+                    wrapperBottom.removeChild(arrowBackClick);
+                    wrapperBottom.removeChild(settingsClick);
+                    containerQuest.removeChild(containerCategoryBlock);
                     wrapperTop.removeChild(wrapperCategoryTitle);
-                    categoryDev();
+                    // container.removeChild(categorySecretHit);
+                    // container.removeChild(categoryChildLove);
+                    // container.removeChild(categoryThreeFaces);
+                    // gsap.to(wrapperCategoryBack, {
+                    //     duration: '0.5',
+                    //     delay: '0.1',
+                    //     autoAlpha: 0,
+                    //     zIndex: '-1'
+                    // });
+                    // gsap.to(wrapperIntro, {
+                    //     duration: '0.5',
+                    //     delay: '0.1',
+                    //     autoAlpha: 1,
+                    //     zIndex: 1
+                    // });
+                    // setTimeout(() => {
+                    //     wrapperBack.removeChild(catBack);
+                    // }, 2000);
+                    const initGame = new CategoryLoad();
                 }
             });
             tl
-                .to([
-                    arrowBackClick,
-                    settingsClick,
-                    wrapperCategoryTitle,
-                    containerQuestFind], {
+                // .to(wrapperTopTitle, {
+                //     autoAlpha: 0,
+                //     delay: '-0.1',
+                //     y: '-10%'
+                // })
+                .to(containerCategoryBlock, {
                     autoAlpha: 0,
-                    delay: '-0.1'
-                })
-                .to([
-                    wrapperCategoryBack,
-                    wrapperCategoryBackTop,
-                    containerFindBlock], {
-                    autoAlpha: 0,
-                    duration: '0.6',
                     delay: '-0.1',
-                    // scale: 1.05
+                    stagger: 0.07
                 })
             ;
         });
-
-        function questionBlockAnim() {
-            let tl = gsap.timeline();
-            tl
-                .from(containerQuestBottom, {
-                    autoAlpha: 0,
-                    duration: 0.4,
-                    delay: 0.6
-                    // y: '100%'
-                })
-                .from(containerQuestBottomTextDiv, {
-                    autoAlpha: 0,
-                    duration: 0.4,
-                    delay: '-0.2'
-                })
-                .from(containerQuestBottomButton, {
-                    autoAlpha: 0,
-                    duration: 0.4,
-                    delay: '-0.4',
-                    stagger: '0.05'
-                })
-            ;
-        }
-        questionBlockAnim();
     }
 
     answerBlock(answerVarNum, answerFull, answerTitle) {

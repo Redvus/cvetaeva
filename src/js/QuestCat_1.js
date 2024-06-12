@@ -5,11 +5,18 @@ import { Settings } from "./Settings.js";
 
 class QuestCat_1 {
 
-    constructor(questLocalNum, questLocalValue) {
+    constructor() {
         this.initQuestLayout();
         // this.localSaveSecretHit();
-        this.questLocalNum = questLocalNum;
-        this.questLocalValue = questLocalValue;
+        // this.questNextNum = questNextNum;
+    }
+
+    localSaveSecretHit(questLocalNum, questLocalValue) {
+        localStorage.setItem(`progressSecretHit_${questLocalNum}`, JSON.stringify(questLocalValue));
+        let progressSecretHitAll = JSON.parse(localStorage.getItem('progressSecretHitAll'));
+        let progressSecretHitQuestLocalNum = JSON.parse(localStorage.getItem(`progressSecretHit_${questLocalNum}`));
+        let progressSecretHitAllSum = progressSecretHitAll + progressSecretHitQuestLocalNum;
+        localStorage.setItem('progressSecretHitAll', JSON.stringify(progressSecretHitAllSum));
     }
 
     initQuestLayout() {
@@ -19,20 +26,13 @@ class QuestCat_1 {
         this.questTimePaused = 600;
     }
 
-    localSaveSecretHit() {
-        localStorage.setItem(`progressSecretHit_${this.questLocalNum}`, JSON.stringify(this.questLocalValue));
-        let progressSecretHit_1 = JSON.parse(localStorage.getItem('progressSecretHitAll'));
-        let progressSecretHitQuestLocalNum = JSON.parse(localStorage.getItem(`progressSecretHit_${this.questLocalNum}`));
-        let progressSecretHit_1Sum = progressSecretHit_1 + progressSecretHitQuestLocalNum;
-        localStorage.setItem('progressSecretHitAll', JSON.stringify(progressSecretHit_1Sum));
-    }
-
     questionCat_1_1() {
-        let answerWrightNum = 1;
+        const questNum = 1;
+        const answerWrightNum = 1;
 
-        if (localStorage.getItem('progressSecretHit_1') === null ||
-            localStorage.getItem('progressSecretHit_1') >= 0) {
-            localStorage.setItem('progressSecretHit_1', JSON.stringify(0));
+        if (localStorage.getItem(`progressSecretHit_${questNum}`) === null ||
+            localStorage.getItem(`progressSecretHit_${questNum}`) >= 0) {
+            localStorage.setItem(`progressSecretHit_${questNum}`, JSON.stringify(0));
         }
 
         this.questionLoad.questionBlock (
@@ -61,8 +61,7 @@ class QuestCat_1 {
         for (let i = 0; i < answerVarArray.length; i++) {
             answerVarArray[i].addEventListener('click', () => {
                 if (answerVarArray[i] === answerVarArray[answerWrightNum]) {
-                    const localSaveSecretHit_1 = new QuestCat_1(1, 1);
-                    localSaveSecretHit_1.localSaveSecretHit();
+                    this.localSaveSecretHit(questNum, 1);
 
                     answerNextClick.addEventListener('click', () => {
                         let tl = gsap.timeline({
@@ -83,14 +82,14 @@ class QuestCat_1 {
                     });
 
                 } else if (answerVarArray[i] !== answerVarArray[answerWrightNum]) {
-                    this.localSaveSecretHit(1, 0);
+                    this.localSaveSecretHit(questNum, 0);
 
                     answerNextClick.addEventListener('click', () => {
                         let tl = gsap.timeline({
                             onComplete: () => {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
-                                // this.questionCat_1_2();
+                                this.questionCat_1_2();
                             }
                         });
                         tl
@@ -108,18 +107,19 @@ class QuestCat_1 {
     }
 
     questionCat_1_2() {
-        let answerWrightNum = 1;
+        const questNum = 2;
+        const answerWrightNum = 1;
 
-        if (localStorage.getItem('progressSecretHit_2') === null ||
-            localStorage.getItem('progressSecretHit_2') >= 0) {
-            localStorage.setItem('progressSecretHit_2', JSON.stringify(0));
+        if (localStorage.getItem(`progressSecretHit_${questNum}`) === null ||
+            localStorage.getItem(`progressSecretHit_${questNum}`) >= 0) {
+            localStorage.setItem(`progressSecretHit_${questNum}`, JSON.stringify(0));
         }
 
         this.questionLoad.questionBlock (
             '',
             'Как правильно называется сказка Э.Т.А. Гофмана?',
             '«Щелкунчик»',
-            '«Щелкунчик и Мышиный король»',
+            '«Щелкунчик и Мышиный»',
             '«Мышиный король и Щелкунчик»'
         );
 
@@ -141,15 +141,14 @@ class QuestCat_1 {
         for (let i = 0; i < answerVarArray.length; i++) {
             answerVarArray[i].addEventListener('click', () => {
                 if (answerVarArray[i] === answerVarArray[answerWrightNum]) {
-                    const localSaveSecretHit_2 = new QuestCat_1(2, 1);
-                    localSaveSecretHit_2.localSaveSecretHit();
+                    this.localSaveSecretHit(questNum, 1);
 
                     answerNextClick.addEventListener('click', () => {
                         let tl = gsap.timeline({
                             onComplete: () => {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
-                                // questionCat_1_2();
+                                // this.questionCat_1_3();
                             }
                         });
                         tl
@@ -163,14 +162,14 @@ class QuestCat_1 {
                     });
 
                 } else if (answerVarArray[i] !== answerVarArray[answerWrightNum]) {
-                    this.localSaveSecretHit(1, 0);
+                    this.localSaveSecretHit(questNum, 0);
 
                     answerNextClick.addEventListener('click', () => {
                         let tl = gsap.timeline({
                             onComplete: () => {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
-                                // this.questionCat_1_2();
+                                // this.questionCat_1_3();
                             }
                         });
                         tl
@@ -186,6 +185,7 @@ class QuestCat_1 {
             });
         }
     }
+
 }
 
 export { QuestCat_1 };

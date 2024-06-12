@@ -4,13 +4,13 @@ class Category {
 
     categoryMain(categoryID, categoryTitle) {
         const
-            container = document.querySelector('.container'),
+            containerCat = document.querySelector('.container__category'),
             categoryBlock = document.createElement('div'),
             categoryBlockInside = document.createElement('div'),
             wrapperTopTitle = document.createElement('div'),
             categoryStarsCount = '20'
         ;
-        categoryBlock.className = 'container__category';
+        categoryBlock.className = 'container__category_category';
         categoryBlock.id = `category${categoryID}`;
         categoryBlock.innerHTML = `
             <div class="category__main">
@@ -29,7 +29,7 @@ class Category {
                 </div>
             </div>
         `;
-        container.appendChild(categoryBlock);
+        containerCat.appendChild(categoryBlock);
     }
 
     categoryProgress(progressID, progressNameValue) {
@@ -45,7 +45,7 @@ class Category {
         }
     }
 
-    categoryQuest(categoryTitle, categoryBackID, categoryBackTopID) {
+    categoryQuest(categoryTitle, categoryBackID) {
         const
             wrapper = document.querySelector('.wrapper'),
             wrapperCategoryBack = document.createElement('picture'),
@@ -60,10 +60,10 @@ class Category {
             containerQuestBottomButtons = document.createElement('ul')
         ;
 
-        wrapperCategoryBack.className = 'wrapper__back_category';
-        wrapperCategoryBackTop.className = 'wrapper__back_category wrapper__back_category--top';
+        wrapperCategoryBack.className = 'wrapper__category_back';
+        wrapperCategoryBackTop.className = 'wrapper__category_back wrapper__category_back--first';
         wrapperCategoryBack.id = `${categoryBackID}`;
-        wrapperCategoryBackTop.id = `${categoryBackTopID}`;
+        // wrapperCategoryBackTop.id = `${categoryBackTopID}`;
         wrapperCategoryTitle.className = 'wrapper__top_title';
         wrapperPreloader.className = 'wrapper__preloader';
 
