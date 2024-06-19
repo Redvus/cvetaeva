@@ -224,7 +224,7 @@ class Game {
                     this.wrapperBack.removeChild(wrapperAboutBack);
                     gsap.to(this.wrapperCategoryBack, {
                         duration: '0.5',
-                        delay: '0.1',
+                        // delay: '0.1',
                         autoAlpha: 0,
                         zIndex: '0'
                     });
@@ -277,7 +277,7 @@ class Game {
                     this.container.style.width = '45rem';
                     gsap.to(this.wrapperCategoryBack, {
                         duration: '0.5',
-                        delay: '0.1',
+                        // delay: '0.1',
                         autoAlpha: 0,
                         zIndex: '0'
                     });
