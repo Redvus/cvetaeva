@@ -1,7 +1,6 @@
 import { gsap } from "gsap";
 import { ArrowsAll } from "./ArrowsAll.js";
 import { Sounds } from "./Sounds.js";
-import {Game} from "./app.js";
 import {CategoryLoad} from "./CategoryLoad.js";
 
 class Question {
@@ -24,7 +23,7 @@ class Question {
             wrapperBottom = document.querySelector('.wrapper__bottom')
         ;
 
-        containerCategoryBlock.className = 'container__category'
+        containerCategoryBlock.className = 'container__category';
         containerQuest.appendChild(containerCategoryBlock);
         containerCategoryBlockTitle.className = 'container-quest__bottom_title';
         containerCategoryBlockText.className = 'container-quest__bottom_text';
@@ -79,9 +78,12 @@ class Question {
             containerCategoryBlockTextDiv = document.querySelector('.container-quest__bottom_text'),
             containerCategoryBlockButton = document.querySelectorAll('.container-quest__bottom_buttons > li'),
             wrapperBackPreloader = document.querySelector('.wrapper__preloader'),
-            wrapperCategoryBack = document.querySelector('.wrapper__back_category'),
+            wrapperCategoryBack = document.querySelector('.wrapper__category_back'),
             wrapperBack = document.querySelector('.wrapper__back'),
-            wrapperCategoryBackTop = document.querySelector('.wrapper__back_category--top')
+            wrapperCategoryBackQuest_1 = document.querySelector('.wrapper__category_back--first'),
+            wrapperCategoryBackQuest_2 = document.querySelector('.wrapper__category_back--second'),
+            wrapperCategoryBackQuest_3 = document.querySelector('.wrapper__category_back--third'),
+            wrapperCategoryBackQuest = [wrapperCategoryBackQuest_1, wrapperCategoryBackQuest_2, wrapperCategoryBackQuest_3]
         ;
 
         function questionBlockAnim() {
@@ -118,28 +120,30 @@ class Question {
             let tl = gsap.timeline({
                 onComplete: () => {
                     wrapperBottom.removeChild(arrowBackClick);
-                    wrapperBottom.removeChild(settingsClick);
+                    // wrapperBottom.removeChild(settingsClick);
                     containerQuest.removeChild(containerCategoryBlock);
                     wrapperTop.removeChild(wrapperCategoryTitle);
                     // container.removeChild(categorySecretHit);
                     // container.removeChild(categoryChildLove);
                     // container.removeChild(categoryThreeFaces);
-                    // gsap.to(wrapperCategoryBack, {
-                    //     duration: '0.5',
-                    //     delay: '0.1',
-                    //     autoAlpha: 0,
-                    //     zIndex: '-1'
-                    // });
-                    // gsap.to(wrapperIntro, {
-                    //     duration: '0.5',
-                    //     delay: '0.1',
-                    //     autoAlpha: 1,
-                    //     zIndex: 1
-                    // });
+                    wrapperCategoryBackQuest.forEach(el => {
+                        gsap.to(el, {
+                            duration: '0.5',
+                            autoAlpha: 0,
+                            zIndex: '-1'
+                        });
+                    });
+                    gsap.to(wrapperCategoryBack, {
+                        delay: '0.2',
+                        autoAlpha: 1,
+                        zIndex: '1'
+                    });
+                    // wrapperBack.appendChild(catBack_1);
                     // setTimeout(() => {
                     //     wrapperBack.removeChild(catBack);
                     // }, 2000);
-                    const initGame = new CategoryLoad();
+                    const initCategory = new CategoryLoad();
+                    initCategory.initCategory();
                 }
             });
             tl

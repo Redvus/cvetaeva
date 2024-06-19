@@ -1,25 +1,23 @@
 import { gsap } from "gsap";
-import { Intro } from "./Intro.js";
-import { About } from "./About.js";
 import { ArrowsAll } from "./ArrowsAll.js"
 import { Settings } from "./Settings.js";
 import { Sounds } from "./Sounds.js";
 import { Category } from "./Category.js";
 import { QuestCat_1 } from "./QuestCat_1.js";
+import { QuestCat_2 } from "./QuestCat_2.js";
+import { QuestCat_3 } from "./QuestCat_3.js";
 import {Game} from "./app.js";
 
 class CategoryLoad {
-
-    constructor() {
-        this.initCategory();
-    }
 
     initCategory() {
         const
             categoryLoad = new Category(),
             arrowBackLoad = new ArrowsAll(),
             settingsLoad = new Settings(),
-            questionLoads = new QuestCat_1()
+            questionLoads_1 = new QuestCat_1(),
+            questionLoads_2 = new QuestCat_2(),
+            questionLoads_3 = new QuestCat_3()
         ;
 
         const
@@ -64,14 +62,14 @@ class CategoryLoad {
 
         const
             catBack = document.querySelector('.wrapper__category_back'),
-            catBack_1 = document.createElement('div'),
-            catBack_2 = document.createElement('div'),
-            catBack_3 = document.createElement('div')
+            catBack_1 = document.querySelector('.wrapper__category_back--first'),
+            catBack_2 = document.querySelector('.wrapper__category_back--second'),
+            catBack_3 = document.querySelector('.wrapper__category_back--third')
         ;
 
-        catBack_1.className = 'wrapper__category_back wrapper__category_back--first';
-        catBack_2.className = 'wrapper__category_back wrapper__category_back--second';
-        catBack_3.className = 'wrapper__category_back wrapper__category_back--third';
+        // catBack_1.className = 'wrapper__category_back wrapper__category_back--first';
+        // catBack_2.className = 'wrapper__category_back wrapper__category_back--second';
+        // catBack_3.className = 'wrapper__category_back wrapper__category_back--third';
 
         function categoryAnimation() {
             let tl = gsap.timeline();
@@ -107,20 +105,19 @@ class CategoryLoad {
                     // container.removeChild(categoryThreeFaces);
                     gsap.to(wrapperCategoryBack, {
                         duration: '0.5',
-                        delay: '0.1',
                         autoAlpha: 0,
                         zIndex: '-1'
                     });
-                    // gsap.to(wrapperIntro, {
-                    //     duration: '0.5',
-                    //     delay: '0.1',
-                    //     autoAlpha: 1,
-                    //     zIndex: 1
-                    // });
+                    gsap.to(wrapperIntro, {
+                        delay: '0.2',
+                        autoAlpha: 1,
+                        zIndex: 1
+                    });
                     // setTimeout(() => {
                     //     wrapperBack.removeChild(catBack);
                     // }, 2000);
                     const initGame = new Game();
+                    initGame.initGame();
                 }
             });
             tl
@@ -235,31 +232,29 @@ class CategoryLoad {
             let tl = gsap.timeline({
                 onComplete: () => {
                     wrapperBottom.removeChild(arrowBackClick);
-                    // wrapperBottom.removeChild(settingsClick);
+                    wrapperBottom.removeChild(settingsClick);
                     container.removeChild(containerCategoryBlock);
                     // container.removeChild(categorySecretHit);
                     // container.removeChild(categoryChildLove);
                     // container.removeChild(categoryThreeFaces);
                     // wrapperBack.removeChild(catBack);
                     // container.className = 'container container-quest';
-                    categoryLoad.categoryQuest(
-                        'Тайный жар',
-                        'wrapperBackEurope');
+                    categoryLoad.categoryQuest('Тайный жар');
                     gsap.to(catBack, {
                         duration: '0.5',
-                        delay: '0.1',
+                        // delay: '0.2',
                         autoAlpha: 0,
                         zIndex: '-1'
                     });
-                    wrapperBack.appendChild(catBack_1);
-                    // gsap.to(catBack_1, {
-                    //     duration: '0.5',
-                    //     delay: '0.1',
-                    //     autoAlpha: 1,
-                    //     zIndex: '1'
-                    // });
+                    // wrapperBack.appendChild(catBack_1);
+                    gsap.to(catBack_1, {
+                        // duration: '0.5',
+                        delay: '0.2',
+                        autoAlpha: 1,
+                        zIndex: '1'
+                    });
                     this.localSetCat_1();
-                    questionLoads.questionCat_1_1();
+                    questionLoads_1.questionCat_1_1();
                 }
             });
             tl
@@ -279,27 +274,32 @@ class CategoryLoad {
                 onComplete: () => {
                     wrapperBottom.removeChild(arrowBackClick);
                     wrapperBottom.removeChild(settingsClick);
-                    container.removeChild(categorySecretHit);
-                    container.removeChild(categoryChildLove);
-                    container.removeChild(categoryThreeFaces);
-                    wrapper.removeChild(catBack);
-                    container.className = 'container';
-                    categoryLoad.categoryQuest(
-                        'Каждый стих – дитя любви',
-                        'wrapperBackAsia',
-                        'wrapperBackAsiaTop');
+                    container.removeChild(containerCategoryBlock);
+                    // container.removeChild(categorySecretHit);
+                    // container.removeChild(categoryChildLove);
+                    // container.removeChild(categoryThreeFaces);
+                    // wrapper.removeChild(catBack);
+                    // container.className = 'container';
+                    categoryLoad.categoryQuest('Каждый стих – дитя любви');
+                    gsap.to(catBack, {
+                        duration: '0.5',
+                        // delay: '0.2',
+                        autoAlpha: 0,
+                        zIndex: '-1'
+                    });
+                    // wrapperBack.appendChild(catBack_1);
+                    gsap.to(catBack_2, {
+                        // duration: '0.5',
+                        delay: '0.2',
+                        autoAlpha: 1,
+                        zIndex: '1'
+                    });
                     this.localSetCat_2();
-                    questionCat_2_0();
+                    questionLoads_2.questionCat_2_1();
                 }
             });
             tl
-                .to([
-                    arrowBackClick,
-                    settingsClick,
-                    categorySecretHit,
-                    categoryChildLove,
-                    categoryThreeFaces,
-                    catBack], {
+                .to(containerCategoryBlock, {
                     autoAlpha: 0,
                     delay: '-0.1',
                     stagger: 0.07
@@ -314,27 +314,28 @@ class CategoryLoad {
                 onComplete: () => {
                     wrapperBottom.removeChild(arrowBackClick);
                     wrapperBottom.removeChild(settingsClick);
-                    container.removeChild(categorySecretHit);
-                    container.removeChild(categoryChildLove);
-                    container.removeChild(categoryThreeFaces);
-                    wrapper.removeChild(catBack);
-                    container.className = 'container';
-                    categoryLoad.categoryQuest(
-                        'Три лика',
-                        'wrapperBackAfrica',
-                        'wrapperBackAfricaTop');
+                    container.removeChild(containerCategoryBlock);
+                    categoryLoad.categoryQuest('Три лика');
+                    gsap.to(catBack, {
+                        duration: '0.5',
+                        // delay: '0.2',
+                        autoAlpha: 0,
+                        zIndex: '-1'
+                    });
+                    // wrapperBack.appendChild(catBack_1);
+                    gsap.to(catBack_3, {
+                        // duration: '0.5',
+                        delay: '0.2',
+                        autoAlpha: 1,
+                        zIndex: '1'
+                    });
                     this.localSetCat_3();
-                    questionCat_3_0();
+                    questionLoads_3.questionCat_3_1();
                 }
             });
             tl
                 .to([
-                    arrowBackClick,
-                    settingsClick,
-                    categorySecretHit,
-                    categoryChildLove,
-                    categoryThreeFaces,
-                    catBack], {
+                    containerCategoryBlock], {
                     autoAlpha: 0,
                     delay: '-0.1',
                     stagger: 0.07

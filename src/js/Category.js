@@ -45,7 +45,7 @@ class Category {
         }
     }
 
-    categoryQuest(categoryTitle, categoryBackID) {
+    categoryQuest(categoryTitle) {
         const
             wrapper = document.querySelector('.wrapper'),
             wrapperCategoryBack = document.createElement('picture'),
@@ -60,19 +60,19 @@ class Category {
             containerQuestBottomButtons = document.createElement('ul')
         ;
 
-        wrapperCategoryBack.className = 'wrapper__category_back';
-        wrapperCategoryBackTop.className = 'wrapper__category_back wrapper__category_back--first';
-        wrapperCategoryBack.id = `${categoryBackID}`;
+        // wrapperCategoryBack.className = 'wrapper__category_back';
+        // wrapperCategoryBackTop.className = 'wrapper__category_back wrapper__category_back--first';
+        // wrapperCategoryBack.id = `${categoryBackID}`;
         // wrapperCategoryBackTop.id = `${categoryBackTopID}`;
         wrapperCategoryTitle.className = 'wrapper__top_title';
-        wrapperPreloader.className = 'wrapper__preloader';
+        // wrapperPreloader.className = 'wrapper__preloader';
 
         // containerQuest.className = 'container-quest';
         // containerQuestBottom.className = 'container-quest__bottom';
 
-        wrapper.appendChild(wrapperPreloader);
-        wrapperBack.appendChild(wrapperCategoryBack);
-        wrapperBack.appendChild(wrapperCategoryBackTop);
+        // wrapper.appendChild(wrapperPreloader);
+        // wrapperBack.appendChild(wrapperCategoryBack);
+        // wrapperBack.appendChild(wrapperCategoryBackTop);
         wrapperTop.appendChild(wrapperCategoryTitle);
         // wrapper.appendChild(containerQuest);
         // containerQuest.appendChild(containerQuestBottom);
@@ -91,16 +91,16 @@ class Category {
         function catQuestAnim() {
             let tl = gsap.timeline({
                 onComplete: () => {
-                    wrapper.removeChild(wrapperPreload);
+                    // wrapper.removeChild(wrapperPreload);
                 }
             });
 
             tl
-                .to(wrapperPreload, {
-                    duration: 0.6,
-                    delay: '0.3',
-                    autoAlpha: 0
-                })
+                // .to(wrapperPreload, {
+                //     duration: 0.6,
+                //     delay: '0.3',
+                //     autoAlpha: 0
+                // })
                 // .from(containerQuestBottom, {
                 //     autoAlpha: 0,
                 //     duration: 0.4,

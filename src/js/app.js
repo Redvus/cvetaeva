@@ -10,21 +10,23 @@ class Game {
 
     constructor() {
         this.initLayout();
-        this.initGame();
         this.initMobile();
     }
 
     initLayout() {
-        // document.getElementById('app').innerHTML = `
-        //     <div class="container"></div>
-        //     <div class="wrapper__top"></div>
-        //     <div class="wrapper__back">
-        //         <div class="wrapper__intro"></div>
-        //         <div class="wrapper__category_back"></div>
-        //     </div>
-        //     <div class="wrapper__bottom"></div>
-        //     <div class="container-quest"></div>
-        // `;
+        document.getElementById('app').innerHTML = `
+            <div class="container"></div>
+            <div class="wrapper__top"></div>
+            <div class="wrapper__back">
+                <div class="wrapper__intro"></div>
+                <div class="wrapper__category_back"></div>
+                <div class="wrapper__category_back--quest wrapper__category_back--first"></div>
+                <div class="wrapper__category_back--quest wrapper__category_back--second"></div>
+                <div class="wrapper__category_back--quest wrapper__category_back--third"></div>
+            </div>
+            <div class="wrapper__bottom"></div>
+            <div class="container-quest"></div>
+        `;
 
         this.wrapper = document.querySelector('.wrapper');
         this.container = document.querySelector('.container');
@@ -79,6 +81,7 @@ class Game {
             let tl = gsap.timeline({
                 onComplete: () => {
                     this.wrapperTop.innerHTML = '';
+                    this.wrapperTop.className = 'wrapper__top';
                     gsap.to(this.wrapperIntro, {
                         duration: '0.5',
                         // delay: '0.2',
@@ -96,6 +99,7 @@ class Game {
                     // }, 800);
                     this.wrapperBottom.removeChild(wrapperBottomMenu);
                     let initCategoryLoad = new CategoryLoad();
+                    initCategoryLoad.initCategory();
                 }
             });
             tl
@@ -222,7 +226,7 @@ class Game {
                         duration: '0.5',
                         delay: '0.1',
                         autoAlpha: 0,
-                        zIndex: '-1'
+                        zIndex: '0'
                     });
                     this.initGame();
                 }
@@ -275,7 +279,7 @@ class Game {
                         duration: '0.5',
                         delay: '0.1',
                         autoAlpha: 0,
-                        zIndex: '-1'
+                        zIndex: '0'
                     });
                     this.initGame();
                 }

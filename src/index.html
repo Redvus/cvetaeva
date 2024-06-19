@@ -8,32 +8,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv="X-UA-Compatible" content="IE=7">
-    <!--    <style lang="sass">-->
-    <!--      @import "./scss/main.scss";-->
-    <!--    </style>-->
 </head>
 <body>
-<div id="app" class="wrapper">
-    <div class="container"></div>
-    <div class="wrapper__top"></div>
-    <div class="wrapper__back">
-        <div class="wrapper__intro"></div>
-        <div class="wrapper__category_back"></div>
-    </div>
-    <div class="wrapper__bottom"></div>
-</div>
+<div id="app" class="wrapper"></div>
 <script type="module">
     import { Game } from "./js/app.js";
     import {CategoryLoad} from "./js/CategoryLoad.js";
 
-    // document.addEventListener('DOMContentLoaded', () => {
-    //     const game = new Game();
-    //     window.game = game;
-    // });
-
     document.addEventListener('DOMContentLoaded', () => {
-        const game = new CategoryLoad();
+        const game = new Game();
         window.game = game;
+        game.initGame();
+        // const initGame = new CategoryLoad();
+        // initGame.initCategory();
     });
 </script>
 </body>

@@ -52,18 +52,42 @@
             background: url("../images/c_aboutBack.jpg") 50% 50% / auto 100% no-repeat;
             //opacity: 0;
             //visibility: hidden;
-            z-index: -1;
+            z-index: 0;
 
             &--first {
+                width: 100%;
+                height: 100vh;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
                 background: url("../images/c_categoryBack_1.jpg") 50% 50% / auto 100% no-repeat;
+                z-index: -1;
+                visibility: hidden;
             }
 
             &--second {
+                width: 100%;
+                height: 100vh;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
                 background: url("../images/c_categoryBack_2.jpg") 50% 50% / auto 100% no-repeat;
+                z-index: -1;
+                visibility: hidden;
             }
 
             &--third {
+                width: 100%;
+                height: 100vh;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
                 background: url("../images/c_categoryBack_3.jpg") 50% 50% / auto 100% no-repeat;
+                z-index: -1;
+                visibility: hidden;
             }
 
             img {
@@ -1729,65 +1753,6 @@
         }
     }
 
-}
-
-.category {
-
-    &__main {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        cursor: pointer;
-
-        &_title {
-            width: calc(100% - (#{$paddingBase} * 1) - 4rem);
-            height: calc(100% - (#{$paddingBase} * 5));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: calc(#{$paddingBase} / 2) solid $fourth;
-            background-color: rgba($secondary, 0.4);
-            padding: 0 2rem;
-            text-align: center;
-            transition: all 0.3s;
-
-            h3 {
-            font-size: calc(#{$body-font-size} + 0.8rem);
-            }
-        }
-
-        &_stars {
-            width: 100%;
-            height: calc(#{$paddingBase} * 4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        &_star {
-            width: 2rem;
-            height: 2rem;
-            display: block;
-
-            polygon {
-                fill: $fourth;
-            }
-        }
-
-        &_value {
-            font-size: $font-size-large;
-            color: $fourth;
-            margin-left: 1rem;
-        }
-
-        &:hover {
-
-            .category__main_title {
-                background-color: rgba($secondary, 0.7);
-            }
-        }
-    }
 }
 
 /* @end  */
