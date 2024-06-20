@@ -161,6 +161,107 @@ import {CategoryLoad} from "./CategoryLoad.js";
         });
     }
 
+    questionBlockNext(
+        questTitle,
+        questQuestion,
+        answerVar_1,
+        answerVar_2,
+        answerVar_3) {
+
+        const
+            arrowBackLoad = new ArrowsAll(),
+            soundsLoad = new Sounds(),
+            containerQuest = document.querySelector('.container'),
+            containerCategoryBlock = document.createElement('div'),
+            wrapperCategoryTitle = document.querySelector('.wrapper__top_title'),
+            wrapperTop = document.querySelector('.wrapper__top'),
+            containerCategoryBlockTitle = document.createElement('h2'),
+            containerCategoryBlockText = document.createElement('div'),
+            containerCategoryBlockButtons = document.createElement('ul'),
+            wrapperBottom = document.querySelector('.wrapper__bottom')
+        ;
+
+        containerCategoryBlock.className = 'container__category';
+        containerQuest.appendChild(containerCategoryBlock);
+        containerCategoryBlockTitle.className = 'container-quest__bottom_title';
+        containerCategoryBlockText.className = 'container-quest__bottom_text';
+        containerCategoryBlockButtons.className = 'container-quest__bottom_buttons';
+
+        if (questTitle) {
+            containerCategoryBlockText.className = 'container-quest__bottom_text container-quest__bottom_text--short';
+            containerCategoryBlockTitle.innerHTML = `${questTitle}`;
+            containerCategoryBlockText.innerHTML = `
+                <p class="container-quest__bottom_text--quest">${questQuestion}</p>
+            `;
+        } else {
+            containerCategoryBlockTitle.className = 'container-quest__bottom_title container-quest__bottom_title--short';
+            containerCategoryBlockText.innerHTML = `
+                <p class="container-quest__bottom_text--quest">${questQuestion}</p>
+            `;
+        }
+
+        containerCategoryBlockButtons.innerHTML = `
+            <li id="answerVar_1"><a href="javascript:void(0);">${answerVar_1}</a></li>
+            <li id="answerVar_2"><a href="javascript:void(0);">${answerVar_2}</a></li>
+            <li id="answerVar_3"><a href="javascript:void(0);">${answerVar_3}</a></li>
+        `;
+
+        containerQuest.appendChild(containerCategoryBlock);
+
+        containerCategoryBlock.appendChild(containerCategoryBlockText);
+        containerCategoryBlock.appendChild(containerCategoryBlockButtons);
+        containerCategoryBlockText.appendChild(containerCategoryBlockTitle);
+
+        const
+            questButtonLi_1 = document.getElementById('answerVar_1'),
+            questButtonLi_2 = document.getElementById('answerVar_2'),
+            questButtonLi_3 = document.getElementById('answerVar_3'),
+            questButtonList = [questButtonLi_1, questButtonLi_2, questButtonLi_3],
+            questButtonLiPosition = ['9%', '38%', '67%'],
+            questButtonLi = document.querySelectorAll('.container-quest__bottom_buttons > li'),
+            positionLiTop = questButtonLiPosition.sort(() => Math.floor(Math.random() * questButtonLiPosition.length))
+        ;
+
+        questButtonList.forEach((el, idx) => {
+            el.style.top = positionLiTop[idx];
+        });
+
+        const
+            containerCategoryBlockTextDiv = document.querySelector('.container-quest__bottom_text'),
+            containerCategoryBlockButton = document.querySelectorAll('.container-quest__bottom_buttons > li'),
+            wrapperCategoryBackQuest_1 = document.querySelector('.wrapper__category_back--first'),
+            wrapperCategoryBackQuest_2 = document.querySelector('.wrapper__category_back--second'),
+            wrapperCategoryBackQuest_3 = document.querySelector('.wrapper__category_back--third'),
+            wrapperCategoryBackQuest = [wrapperCategoryBackQuest_1, wrapperCategoryBackQuest_2, wrapperCategoryBackQuest_3]
+        ;
+
+        function questionBlockAnim() {
+            let tl = gsap.timeline();
+
+                tl
+                    .from(containerCategoryBlock, {
+                        autoAlpha: 0,
+                        duration: 0.8,
+                        delay: '-0.2',
+                        scale: 0.95
+                    })
+                    .from(containerCategoryBlockTextDiv, {
+                        autoAlpha: 0,
+                        duration: 0.4,
+                        // delay: '-0.1'
+                    })
+                    .from(containerCategoryBlockButton, {
+                        autoAlpha: 0,
+                        duration: 0.4,
+                        delay: '-0.2',
+                        stagger: '0.05'
+                    })
+                ;
+
+        }
+        questionBlockAnim();
+    }
+
     answerBlock(answerVarNum, answerFull, answerTitle) {
         const
             questionBlock = document.querySelector('.container-quest__bottom_text'),
