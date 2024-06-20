@@ -119,7 +119,7 @@ class QuestCat_1 {
             '',
             'Как правильно называется сказка Э.Т.А. Гофмана?',
             '«Щелкунчик»',
-            '«Щелкунчик и Мышиный»',
+            '«Щелкунчик и Мышиный король»',
             '«Мышиный король и Щелкунчик»'
         );
 
@@ -130,7 +130,7 @@ class QuestCat_1 {
             answerVar_3 = document.getElementById('answerVar_3'),
             answerVarArray = [answerVar_1, answerVar_2, answerVar_3],
             containerQuest = document.querySelector('.container-quest'),
-            containerQuestBottom = document.querySelector('.container-quest__bottom'),
+            containerQuestBottom = document.querySelector('.container__category'),
             containerQuestBottomTextDiv = document.querySelector('.container-quest__bottom_text'),
             containerQuestBottomButtons = document.querySelector('.container-quest__bottom_buttons'),
             buttonBack = document.getElementById('arrowBack'),

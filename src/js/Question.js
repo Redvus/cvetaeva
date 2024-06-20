@@ -3,7 +3,7 @@ import { ArrowsAll } from "./ArrowsAll.js";
 import { Sounds } from "./Sounds.js";
 import {CategoryLoad} from "./CategoryLoad.js";
 
-class Question {
+    class Question {
 
     questionBlock(questTitle,
                   questQuestion,

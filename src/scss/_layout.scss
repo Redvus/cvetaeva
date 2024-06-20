@@ -64,6 +64,7 @@
                 background: url("../images/c_categoryBack_1.jpg") 50% 50% / auto 100% no-repeat;
                 z-index: -1;
                 visibility: hidden;
+                opacity: 0;
             }
 
             &--second {
@@ -76,6 +77,7 @@
                 background: url("../images/c_categoryBack_2.jpg") 50% 50% / auto 100% no-repeat;
                 z-index: -1;
                 visibility: hidden;
+                opacity: 0;
             }
 
             &--third {
@@ -88,6 +90,7 @@
                 background: url("../images/c_categoryBack_3.jpg") 50% 50% / auto 100% no-repeat;
                 z-index: -1;
                 visibility: hidden;
+                opacity: 0;
             }
 
             img {
@@ -1757,4 +1760,12 @@
 
 }
 
+.no-select {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari, Chrome, Opera, Samsung */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Edge, IE */
+    user-select: none; /* Modern browsers */
+  }
 /* @end  */

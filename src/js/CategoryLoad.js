@@ -171,9 +171,15 @@ class CategoryLoad {
                 setProgressCat_1.textContent = JSON.parse(localStorage.getItem('progressSecretHitAll'));
                 setProgressCat_2.textContent = JSON.parse(localStorage.getItem('progressChildLoveAll'));
                 setProgressCat_3.textContent = JSON.parse(localStorage.getItem('progressThreeFacesAll'));
-                // categorySecretHit.className = 'container__category';
-                // categoryChildLove.className = 'container__category';
-                // categoryThreeFaces.className = 'container__category';
+                categorySecretHit.firstElementChild.className = 'category__main';
+                categorySecretHit.style.userSelect = '';
+                categorySecretHit.style.pointerEvents = '';
+                categoryChildLove.firstElementChild.className = 'category__main';
+                categoryChildLove.style.userSelect = '';
+                categoryChildLove.style.pointerEvents = '';
+                categoryThreeFaces.firstElementChild.className = 'category__main';
+                categoryThreeFaces.style.userSelect = '';
+                categoryThreeFaces.style.pointerEvents = '';
 
                 let tl = gsap.timeline({
                     onComplete: () => {
@@ -344,18 +350,21 @@ class CategoryLoad {
         });
 
         if (progressSecretHitQuestSum === 20) {
-            categorySecretHit.className += ' category__main--hidden';
+            categorySecretHit.firstElementChild.className += ' category__main--hidden';
             categorySecretHit.style.userSelect = 'none';
+            categorySecretHit.style.pointerEvents = 'none';
         }
 
         if (progressChildLoveQuestSum === 20) {
-            categoryChildLove.className += ' category__main--hidden';
+            categoryChildLove.firstElementChild.className += ' category__main--hidden';
             categoryChildLove.style.userSelect = 'none';
+            categoryChildLove.style.pointerEvents = 'none';
         }
 
         if (progressThreeFacesQuestSum === 20) {
-            categoryThreeFaces.className += ' category__main--hidden';
+            categoryThreeFaces.firstElementChild.className += ' category__main--hidden';
             categoryThreeFaces.style.userSelect = 'none';
+            categoryThreeFaces.style.pointerEvents = 'none';
         }
     }
 
