@@ -54,5 +54,20 @@
                 background-color: rgba($secondary, 0.7);
             }
         }
+
+        &--hidden {
+            cursor: default;
+
+            .category__main_title {
+                opacity: 0.5;
+            }
+
+            &:hover {
+
+                .category__main_title {
+                    background-color: rgba($secondary, 0.4);
+                }
+            }
+        }
     }
 }
