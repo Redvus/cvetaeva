@@ -24,6 +24,7 @@ class QuestCat_1 {
         this.arrowBackLoad = new ArrowsAll();
         this.settingsLoad = new Settings();
         this.questTimePaused = 600;
+        this.wrapperBottom = document.querySelector('.wrapper__bottom');
     }
 
     questionCat_1_1() {
@@ -69,6 +70,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_2();
                             }
                         });
@@ -91,6 +93,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_2();
                             }
                         });
@@ -117,7 +120,7 @@ class QuestCat_1 {
             localStorage.setItem(`progressSecretHit_${questNum}`, JSON.stringify(0));
         }
 
-        this.questionLoad.questionBlockNext(
+        this.questionLoad.questionBlock(
             '',
             'Отец Марины Цветаевой Иван Владимирович Цветаев ...',
             'профессор',
@@ -151,6 +154,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_3();
                             }
                         });
@@ -173,6 +177,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_3();
                             }
                         });
@@ -199,7 +204,7 @@ class QuestCat_1 {
             localStorage.setItem(`progressSecretHit_${questNum}`, JSON.stringify(0));
         }
 
-        this.questionLoad.questionBlockNext(
+        this.questionLoad.questionBlock(
             '',
             'Мать Марины Цветаевой – Мария Александровна Мейн ...',
             'пианистка',
@@ -233,6 +238,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_4();
                             }
                         });
@@ -255,6 +261,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_4();
                             }
                         });
@@ -281,7 +288,7 @@ class QuestCat_1 {
             localStorage.setItem(`progressSecretHit_${questNum}`, JSON.stringify(0));
         }
 
-        this.questionLoad.questionBlockNext(
+        this.questionLoad.questionBlock(
             '',
             'Марина Цветаева родилась в семье, - писала её дочь Ариадна – являющую собой некий союз ...',
             'одиночеств',
@@ -315,6 +322,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_5();
                             }
                         });
@@ -337,6 +345,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_5();
                             }
                         });
@@ -363,7 +372,7 @@ class QuestCat_1 {
             localStorage.setItem(`progressSecretHit_${questNum}`, JSON.stringify(0));
         }
 
-        this.questionLoad.questionBlockNext(
+        this.questionLoad.questionBlock(
             '',
             'Страсть к стихам у Марины Цветаевой от ...',
             'от обоих родителей',
@@ -397,6 +406,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_6();
                             }
                         });
@@ -419,6 +429,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_6();
                             }
                         });
@@ -445,7 +456,7 @@ class QuestCat_1 {
             localStorage.setItem(`progressSecretHit_${questNum}`, JSON.stringify(0));
         }
 
-        this.questionLoad.questionBlockNext(
+        this.questionLoad.questionBlock(
             '',
             '«Всё что мне суждено было узнать, узнала ... лет, а все последующие сорок осознавала.',
             'до семи лет',
@@ -479,6 +490,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_7();
                             }
                         });
@@ -501,6 +513,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_7();
                             }
                         });
@@ -527,7 +540,7 @@ class QuestCat_1 {
             localStorage.setItem(`progressSecretHit_${questNum}`, JSON.stringify(0));
         }
 
-        this.questionLoad.questionBlockNext(
+        this.questionLoad.questionBlock(
             '',
             'Первые стихи были написаны...',
             'в семь лет',
@@ -561,6 +574,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_8();
                             }
                         });
@@ -583,6 +597,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_8();
                             }
                         });
@@ -609,7 +624,7 @@ class QuestCat_1 {
             localStorage.setItem(`progressSecretHit_${questNum}`, JSON.stringify(0));
         }
 
-        this.questionLoad.questionBlockNext(
+        this.questionLoad.questionBlock(
             '',
             'Формулу – наперёд – своей писательской судьбы, она дала, когда ей было 20 лет, и не ошиблась:<br>Разбросанным в пыли по магазинам<br>(Где их никто не брал и не берёт!),<br> ..., как драгоценным камням<br>Настанет свой черёд',
             'моим словам',
@@ -643,6 +658,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_9();
                             }
                         });
@@ -665,6 +681,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_9();
                             }
                         });
@@ -691,7 +708,7 @@ class QuestCat_1 {
             localStorage.setItem(`progressSecretHit_${questNum}`, JSON.stringify(0));
         }
 
-        this.questionLoad.questionBlockNext(
+        this.questionLoad.questionBlock(
             '',
             'Макс (Волошин), я выйду замуж за того кто угадает, какой мой любимый камень. Именно этот камень преподнёс Сергей Эфрон во время их первой встречи',
             'сердолик',
@@ -725,6 +742,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_10();
                             }
                         });
@@ -747,6 +765,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_10();
                             }
                         });
@@ -773,7 +792,7 @@ class QuestCat_1 {
             localStorage.setItem(`progressSecretHit_${questNum}`, JSON.stringify(0));
         }
 
-        this.questionLoad.questionBlockNext(
+        this.questionLoad.questionBlock(
             '',
             'В 1912 году родилась первая дочь Цветаевой. Марина Ивановна нарекла её:',
             'Ариадна',
@@ -807,6 +826,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_11();
                             }
                         });
@@ -829,6 +849,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_11();
                             }
                         });
@@ -855,7 +876,7 @@ class QuestCat_1 {
             localStorage.setItem(`progressSecretHit_${questNum}`, JSON.stringify(0));
         }
 
-        this.questionLoad.questionBlockNext(
+        this.questionLoad.questionBlock(
             '',
             'В 1922 году Марина Цветаева уезжает за границу, где три с половиной года живёт в Чехии, и четырнадцать лет во Франции. Уезжает за ...',
             'за мужем Сергеем Эфроном',
@@ -889,6 +910,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_12();
                             }
                         });
@@ -911,6 +933,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_12();
                             }
                         });
@@ -937,7 +960,7 @@ class QuestCat_1 {
             localStorage.setItem(`progressSecretHit_${questNum}`, JSON.stringify(0));
         }
 
-        this.questionLoad.questionBlockNext(
+        this.questionLoad.questionBlock(
             '',
             'В 1939 году возвращается в Советский союз, чтобы дать своему сыну Георгию ...',
             'образование',
@@ -971,6 +994,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_13();
                             }
                         });
@@ -993,6 +1017,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_13();
                             }
                         });
@@ -1019,7 +1044,7 @@ class QuestCat_1 {
             localStorage.setItem(`progressSecretHit_${questNum}`, JSON.stringify(0));
         }
 
-        this.questionLoad.questionBlockNext(
+        this.questionLoad.questionBlock(
             '',
             'Из Анкеты (Служебная). В графе «семейное положение» Марина Ивановна пишет ...',
             'замужем двое детей',
@@ -1053,6 +1078,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_14();
                             }
                         });
@@ -1075,6 +1101,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_14();
                             }
                         });
@@ -1101,7 +1128,7 @@ class QuestCat_1 {
             localStorage.setItem(`progressSecretHit_${questNum}`, JSON.stringify(0));
         }
 
-        this.questionLoad.questionBlockNext(
+        this.questionLoad.questionBlock(
             '',
             'Только плохие книги – не для всех. Плохие книги льстят слабостям: века, возраста, пола.',
             'Мифы-Библия-эпос-для всех',
@@ -1135,6 +1162,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_15();
                             }
                         });
@@ -1157,6 +1185,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_15();
                             }
                         });
@@ -1183,7 +1212,7 @@ class QuestCat_1 {
             localStorage.setItem(`progressSecretHit_${questNum}`, JSON.stringify(0));
         }
 
-        this.questionLoad.questionBlockNext(
+        this.questionLoad.questionBlock(
             '',
             'Ни один человек, даже самый отрешённый, не свободен от ...',
             'радости быть чем-то(всем!) в чьей –нибудь жизни',
@@ -1217,6 +1246,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_16();
                             }
                         });
@@ -1239,6 +1269,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_16();
                             }
                         });
@@ -1265,7 +1296,7 @@ class QuestCat_1 {
             localStorage.setItem(`progressSecretHit_${questNum}`, JSON.stringify(0));
         }
 
-        this.questionLoad.questionBlockNext(
+        this.questionLoad.questionBlock(
             '',
             '«…Это колодец не во-вне, а во мне, я в себя, в какую- то себя проваливаюсь – как на Американских горах в свой собственный пищевод». Так Марина Цветаева описала состояние ...',
             'творческого вдохновения',
@@ -1299,6 +1330,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_17();
                             }
                         });
@@ -1321,6 +1353,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_17();
                             }
                         });
@@ -1347,7 +1380,7 @@ class QuestCat_1 {
             localStorage.setItem(`progressSecretHit_${questNum}`, JSON.stringify(0));
         }
 
-        this.questionLoad.questionBlockNext(
+        this.questionLoad.questionBlock(
             '',
             'Не торжествуйте победы над врагом. Достаточно сознания. После победы стойте ... или с поднятыми – и протянутой рукой ...',
             'с опущенными глазами',
@@ -1381,6 +1414,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_18();
                             }
                         });
@@ -1403,6 +1437,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_18();
                             }
                         });
@@ -1429,7 +1464,7 @@ class QuestCat_1 {
             localStorage.setItem(`progressSecretHit_${questNum}`, JSON.stringify(0));
         }
 
-        this.questionLoad.questionBlockNext(
+        this.questionLoad.questionBlock(
             '',
             'Не слишком сердитесь на своих ..., - помните, то и они были вами, и вы будете ими...',
             'стариков',
@@ -1463,6 +1498,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_19();
                             }
                         });
@@ -1485,6 +1521,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_19();
                             }
                         });
@@ -1511,7 +1548,7 @@ class QuestCat_1 {
             localStorage.setItem(`progressSecretHit_${questNum}`, JSON.stringify(0));
         }
 
-        this.questionLoad.questionBlockNext(
+        this.questionLoad.questionBlock(
             '',
             'Именно этого поэта и писателя имела ввиду Марина Цветаева, когда писала, что женщина, забывающая о ... в ту минуту, когда входит её возлюбленный, любит только ...',
             'Генриха Гейне',
@@ -1545,6 +1582,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_20();
                             }
                         });
@@ -1567,6 +1605,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 this.questionCat_1_20();
                             }
                         });
@@ -1593,7 +1632,7 @@ class QuestCat_1 {
             localStorage.setItem(`progressSecretHit_${questNum}`, JSON.stringify(0));
         }
 
-        this.questionLoad.questionBlockNext(
+        this.questionLoad.questionBlock(
             '',
             'Последним приютом для Цветаевой стала земля ...',
             'Елабуги',
@@ -1627,6 +1666,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 const initCategory = new CategoryLoad();
                                 initCategory.initCategory();
                             }
@@ -1650,6 +1690,7 @@ class QuestCat_1 {
                                 containerQuestBottom.removeChild(containerQuestBottomTextDiv);
                                 containerQuestBottom.removeChild(containerQuestBottomButtons);
                                 container.removeChild(containerQuestBottom);
+                                this.wrapperBottom.removeChild(buttonBack);
                                 const initCategory = new CategoryLoad();
                                 initCategory.initCategory();
                             }
