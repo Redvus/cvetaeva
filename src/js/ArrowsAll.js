@@ -27,7 +27,7 @@ class ArrowsAll {
                 autoAlpha: 0
             });
         }
-        arrowBackAnim();
+        // arrowBackAnim();
     }
 
     clearStorage() {
