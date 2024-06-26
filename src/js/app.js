@@ -10,7 +10,7 @@ class Game {
 
     constructor() {
         this.initLayout();
-        this.initMobile();
+        // this.initMobile();
     }
 
     initLayout() {

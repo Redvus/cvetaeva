@@ -70,4 +70,17 @@
             }
         }
     }
+
+    @include grid-media($Small) {
+
+        &__main {
+
+            &_title {
+
+                h3 {
+                    margin-top: 1rem;
+                }
+            }
+        }
+    }
 }

@@ -115,7 +115,8 @@ h1 {
     //transition: all .3s;
 
     @include grid-media($Small) {
-        font-size: calc(1rem + 4vmin);
+        font-size: calc(1rem + 2vmin);
+        text-align: center;
     }
 }
 

@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"sshfs.configs": [],
+		"debug.javascript.defaultRuntimeExecutable": {
+			"pwa-node": "node"
+		}
+	}
+}
