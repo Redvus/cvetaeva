@@ -15,15 +15,18 @@
     import { Game } from "./js/app.js";
     import {CategoryLoad} from "./js/CategoryLoad.js";
     import { Question } from "./js/Question.js";
+    import { About } from "./js/About.js";
 
     document.addEventListener('DOMContentLoaded', () => {
         const game = new Game();
         window.game = game;
-        game.initGame();
+        // game.initGame();
         // const initGame = new CategoryLoad();
         // initGame.initCategory();
         // const initQuest = new Question();
         // initQuest.questionBlock();
+        // game.aboutStart();
+        game.authorsStart();
     });
 </script>
 </body>
