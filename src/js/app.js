@@ -208,7 +208,8 @@ class Game {
         const
             containerAbout = document.querySelector('.container__about_block'),
             wrapperTopTitle = document.querySelector('.wrapper__top_title'),
-            wrapperAboutBack = document.querySelector('.wrapper__intro_about')
+            wrapperAboutBack = document.querySelector('.wrapper__intro_about'),
+            containerAboutInside = document.querySelector('.container__about_inside')
         ;
 
         this.arrowBackLoad.arrowBack();
@@ -228,6 +229,11 @@ class Game {
                         autoAlpha: 0,
                         zIndex: '0'
                     });
+                    if (document.body.clientWidth < 570 || screen.width < 570) {
+                        containerAboutInside.style.height = 'initial';
+                        this.container.style.width = '';
+                        this.container.style.padding = '';
+                    }
                     this.initGame();
                 }
             });
@@ -281,6 +287,10 @@ class Game {
                         autoAlpha: 0,
                         zIndex: '0'
                     });
+                    if (document.body.clientWidth < 570 || screen.width < 570) {
+                        this.container.style.width = '';
+                        this.container.style.padding = '';
+                    }
                     this.initGame();
                 }
             });
@@ -320,6 +330,8 @@ class Game {
             this.wrapper.removeChild(this.wrapperBack);
             this.wrapper.appendChild(this.wrapperMobile);
         }
+
+        
     }
 }
 

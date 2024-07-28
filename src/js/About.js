@@ -55,6 +55,12 @@ class About {
             wrapperTop = document.querySelector('.wrapper__top')
         ;
 
+        if (document.body.clientWidth < 570 || screen.width < 570) {
+            container.style.width = 'calc(100% - 2rem)';
+            container.style.padding = '0 1rem';
+        } else {
+            container.style.width = '45rem';
+        }
         containerAbout.className = 'container__about_block container__about_block--authors';
         wrapperTitleAuthors.className = 'wrapper__top_title';
 
@@ -81,10 +87,13 @@ class About {
         wrapperTop.appendChild(wrapperTitleAuthors);
         container.appendChild(containerAbout);
 
-        let titleAuthors = document.querySelector('.wrapper__top_title'),
+        const titleAuthors = document.querySelector('.wrapper__top_title'),
             containerAboutPerson = document.querySelectorAll('.container__about_person'),
-            aboutBlock = document.querySelector('.container__about_block')
+            aboutBlock = document.querySelector('.container__about_block'),
+            containerAboutInside = document.querySelector('.container__about_inside')
         ;
+
+        containerAboutInside.style.height = '100%';
 
         function aboutAuthorsAnim() {
             let tl = new gsap.timeline();
@@ -123,7 +132,12 @@ class About {
             containerAboutRight = document.createElement('div')
         ;
 
-        container.style.width = '60rem';
+        if (document.body.clientWidth < 570 || screen.width < 570) {
+            container.style.width = 'calc(100% - 2rem)';
+            container.style.padding = '0 1rem';
+        } else {
+            container.style.width = '60rem';
+        }
         containerAbout.className = 'container__about_block container__about_block--about';
         containerAboutLeft.className = 'container__about_inside container__inside_left';
         containerAboutRight.className = 'container__about_inside container__inside_right';
