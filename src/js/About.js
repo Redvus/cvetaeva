@@ -93,7 +93,9 @@ class About {
             containerAboutInside = document.querySelector('.container__about_inside')
         ;
 
-        containerAboutInside.style.height = '100%';
+        if (document.body.clientWidth < 570 || screen.width < 570) {
+            containerAboutInside.style.height = '100%';
+        }        
 
         function aboutAuthorsAnim() {
             let tl = new gsap.timeline();
