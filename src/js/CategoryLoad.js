@@ -286,7 +286,7 @@ class CategoryLoad {
                     // container.removeChild(categoryThreeFaces);
                     // wrapper.removeChild(catBack);
                     // container.className = 'container';
-                    categoryLoad.categoryQuest('Каждый стих – дитя любви');
+                    categoryLoad.categoryQuest('Каждый стих–дитя любви');
                     gsap.to(catBack, {
                         duration: '0.5',
                         // delay: '0.2',

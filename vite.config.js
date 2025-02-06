@@ -20,14 +20,17 @@ export default defineConfig({
                 chunkFileNames: 'js/app-min.js',
                 entryFileNames: 'js/app-min.js',
 
-                assetFileNames: ({name}) => {
-                    if (/\.(gif|jpg|jpe?g|png|svg)$/.test(name ?? '')){
-                        return 'images/[name]-[hash][extname]';
+                assetFileNames: (names) => {
+                    if (/\.(gif|jpg|jpe?g|png|svg)$/.test(names ?? '')){
+                        return 'images/[name][extname]';
                     }
 
-                    if (/\.css$/.test(name ?? '')) {
-                        return 'css/main.css';
-                    }
+                    // if (/\.css$/.test(name ?? '')) {
+                    //     return 'css/main.css';
+                    // }
+
+                    if (names.name == "index.css") return "css/main.css";
+                    return names.name;
 
                     // default value
                     // ref: https://rollupjs.org/guide/en/#outputassetfilenames
@@ -37,15 +40,6 @@ export default defineConfig({
         }
     },
     css: {
-        devSourcemap: true,
-        // preprocessorOptions: {
-        //     scss: {
-        //         additionalData: `
-        //             @import "./src/scss/_color.scss";
-        //             @import "./src/scss/_layout.scss";
-        //             @import "./src/scss/_layout.scss";
-        //         `
-        //     }
-        // }
+        devSourcemap: true
     }
 });
