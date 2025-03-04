@@ -6,7 +6,7 @@ import { Category } from "./Category.js";
 import { QuestCat_1 } from "./QuestCat_1.js";
 import { QuestCat_2 } from "./QuestCat_2.js";
 import { QuestCat_3 } from "./QuestCat_3.js";
-import {Game} from "./app.js";
+import { Game } from "./app.js";
 
 class CategoryLoad {
 
