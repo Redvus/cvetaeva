@@ -50,8 +50,8 @@
             top: 0;
             left: 0;
             background: url("../images/c_aboutBack.jpg") 50% 50% / auto 100% no-repeat;
-            //opacity: 0;
-            //visibility: hidden;
+            opacity: 0;
+            visibility: hidden;
             z-index: 0;
 
             &--first {
@@ -690,7 +690,7 @@
 
     // @include grid-media($Medium) {
 
-        
+
     // }
 
     @include grid-media($Small) {
@@ -1695,7 +1695,7 @@
         &__about {
 
             &_text {
-                
+
                 &--left {
                     width: calc(90% - 3rem);
                     height: calc(80% - 6rem);
@@ -1710,13 +1710,13 @@
                     padding: 3rem 1.5rem;
                 }
             }
-        } 
+        }
     }
 
     @include grid-media($Medium) {
 
         &-quest {
-            
+
             &__bottom {
 
                 &_text {
@@ -1732,7 +1732,7 @@
         &__about {
 
             &_text {
-                
+
                 &--left {
                     width: calc(90% - 3rem);
                     height: calc(80% - 6rem);
@@ -1747,7 +1747,7 @@
                     padding: 3rem 1.5rem;
                 }
             }
-        }        
+        }
     }
 
     //@include grid-media($HSmall) {
@@ -1840,7 +1840,7 @@
                 // margin-right: 1rem;
                 background: none;
             }
-    
+
             &_right {
                 // width: calc(50% - 1rem);
                 // margin-left: 1rem;
@@ -1855,7 +1855,7 @@
                 height: initial;
                 margin: 0;
             }
-            
+
             &_text {
                 width: 100%;
                 padding: 0;

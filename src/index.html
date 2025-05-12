@@ -10,24 +10,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=7">
 </head>
 <body>
-<div id="app" class="wrapper"></div>
-<script type="module">
-    import { Game } from "./js/app.js";
-    import { CategoryLoad } from "./js/CategoryLoad.js";
-    import { Question } from "./js/Question.js";
-    import { About } from "./js/About.js";
+    <div id="app" class="wrapper"></div>
+    <script type="module">
+        import { Game } from "./js/app.js";
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const game = new Game();
-        window.game = game;
-        game.initGame();
-        // const initGame = new CategoryLoad();
-        // initGame.initCategory();
-        // const initQuest = new Question();
-        // initQuest.questionBlock();
-        // game.aboutStart();
-        // game.authorsStart();
-    });
-</script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const game = new Game();
+            window.game = game;
+        });
+    </script>
 </body>
 </html>

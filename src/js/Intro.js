@@ -1,35 +1,53 @@
 import { gsap } from "gsap";
+import { About } from "./About.js";
+import { ArrowsAll } from "./ArrowsAll.js";
+import { Sounds } from "./Sounds.js";
+import { CategoryLoad } from "./CategoryLoad.js";
 
 class Intro {
 
-    introStart() {
-        const
-            introBack = document.createElement('div'),
-            wrapperBack = document.querySelector('.wrapper__back'),
-            wrapperBottom = document.querySelector('.wrapper__bottom'),
-            wrapperTop = document.querySelector('.wrapper__top'),
-            wrapperTopTitle = document.createElement('div')
-        ;
+    constructor() {
+        new ArrowsAll();
+        new Sounds();
+
+        this.initLayout();
+        this.introAnim();
+        this.initGame();
+    }
+
+    initLayout() {
+        this.wrapperBack = document.querySelector('.wrapper__back');
+        this.wrapperBottom = document.querySelector('.wrapper__bottom');
+        this.wrapperTop = document.querySelector('.wrapper__top');
+        this.wrapperIntro = document.querySelector('.wrapper__intro');
+        // this.backgroundMusicID = document.getElementById('backgroundMusicID');
+
+        this.introBack = document.createElement('div');
+        this.wrapperTopTitle = document.createElement('div');
+
         // introBack.className = 'wrapper__intro';
-        wrapperTop.className += ' wrapper__top_intro';
-        wrapperTopTitle.className = 'wrapper__top_title wrapper__top_title--intro';
+        this.wrapperTop.className += ' wrapper__top_intro';
+        this.wrapperTopTitle.className = 'wrapper__top_title wrapper__top_title--intro';
         // wrapperBack.appendChild(introBack);
 
-        wrapperTopTitle.innerHTML = `
+        this.wrapperTopTitle.innerHTML = `
             <h1>Марина Цветаева:<br />путешествие в поэзию</h1>
         `;
-        wrapperTop.appendChild(wrapperTopTitle);
 
         // Кнопки
-        const introBlockButtons = document.createElement('ul');
-        introBlockButtons.className = 'wrapper__bottom_menu';
-        introBlockButtons.innerHTML = `
+        this.introBlockButtons = document.createElement('ul');
+        this.introBlockButtons.className = 'wrapper__bottom_menu';
+        this.introBlockButtons.innerHTML = `
             <li><a href="javascript:void(0);" id="clickAboutLibrary">О библиотеке</a></li>
             <li><a href="javascript:void(0);" id="clickAboutAuthors">Авторы</a></li>
             <li><a href="javascript:void(0);" id="clickLoadGame">Начать игру</a></li>
         `;
-        wrapperBottom.appendChild(introBlockButtons);
 
+        this.wrapperTop.appendChild(this.wrapperTopTitle);
+        this.wrapperBottom.appendChild(this.introBlockButtons);
+    }
+
+    introAnim() {
         const
             introTitleBottom = document.getElementById('introTitleBottom'),
             wrapperBottomMenu = document.querySelectorAll('.wrapper__bottom_menu > li'),
@@ -37,30 +55,287 @@ class Intro {
             wrapperTitle = document.querySelector('.wrapper__top_title')
         ;
 
-        function introAnim() {
-            let tl = gsap.timeline();
+        let tl = gsap.timeline();
+        tl
+            .from(wrapperTitle, {
+                duration: 0.4,
+                delay: 0.2,
+                autoAlpha: 0,
+                y: '-10%'
+            })
+            // .from(wrapperIntro, {
+            //     duration: 0.4,
+            //     delay: '-0.1',
+            //     autoAlpha: 0
+            // })
+            .from(wrapperBottomMenu, {
+                duration: 0.4,
+                delay: '-0.1',
+                stagger: '0.05',
+                autoAlpha: 0
+            })
+        ;
+    }
+
+    initGame() {
+
+        const
+            clickLoadGame = document.getElementById('clickLoadGame'),
+            clickAuthors = document.getElementById('clickAboutAuthors'),
+            clickAbout = document.getElementById('clickAboutLibrary'),
+            wrapperBottomMenu = document.querySelector('.wrapper__bottom_menu'),
+            wrapperTopTitle = document.querySelector('.wrapper__top_title')
+        ;
+
+        gsap.to(this.wrapperIntro, {
+            duration: 0.5,
+            // delay: '-0.1',
+            autoAlpha: 1,
+            zIndex: 1
+        });
+
+        clickLoadGame.addEventListener('click', () => {
+
+            // Music Background
+            // if (backgroundMusicID === null) {
+            //     soundsLoad.backgroundMusicLoad('assets/games/oldApartment/sounds/oa_ambient.ogg');
+            //     localStorage.setItem('backgroundMusic', JSON.stringify(1));
+            // } else if (backgroundMusicID.paused || localStorage.getItem('backgroundMusic') === '0') {
+            //     backgroundMusicID.pause();
+            //     localStorage.setItem('backgroundMusic', JSON.stringify(0));
+            // }
+
+            let tl = gsap.timeline({
+                onComplete: () => {
+                    this.wrapperTop.innerHTML = '';
+                    this.wrapperTop.className = 'wrapper__top';
+                    gsap.to(this.wrapperIntro, {
+                        duration: '0.5',
+                        // delay: '0.2',
+                        autoAlpha: 0,
+                        zIndex: '-1'
+                    });
+                    gsap.to(this.wrapperCategoryBack, {
+                        // duration: '0.5',
+                        delay: '0.2',
+                        autoAlpha: 1,
+                        zIndex: 1
+                    });
+                    // setTimeout(() => {
+                    //     this.wrapperBack.removeChild(wrapperIntro);
+                    // }, 800);
+                    this.wrapperBottom.removeChild(wrapperBottomMenu);
+                    let initCategoryLoad = new CategoryLoad();
+                    initCategoryLoad.initCategory();
+                }
+            });
             tl
-                .from(wrapperTitle, {
-                    duration: 0.4,
-                    delay: 0.2,
+                .to(wrapperTopTitle, {
                     autoAlpha: 0,
+                    duration: 0.3,
                     y: '-10%'
                 })
-                // .from(wrapperIntro, {
-                //     duration: 0.4,
-                //     delay: '-0.1',
-                //     autoAlpha: 0
-                // })
-                .from(wrapperBottomMenu, {
-                    duration: 0.4,
-                    delay: '-0.1',
-                    stagger: '0.05',
+                .to(wrapperBottomMenu, {
+                    duration: 0.3,
+                    // delay: '-0.2',
                     autoAlpha: 0
                 })
-
             ;
-        }
-        introAnim();
+        });
+
+        clickAuthors.addEventListener('click', () => {
+            let tl = gsap.timeline({
+                onComplete: () => {
+                    this.wrapperTop.innerHTML = '';
+                    this.wrapperTop.className = 'wrapper__top';
+                    gsap.to(this.wrapperIntro, {
+                        duration: '0.5',
+                        // delay: '0.2',
+                        autoAlpha: 0,
+                        zIndex: '-1'
+                    });
+                    gsap.to(this.wrapperCategoryBack, {
+                        // duration: '0.5',
+                        delay: '0.2',
+                        autoAlpha: 1,
+                        zIndex: 1
+                    });
+                    // setTimeout(() => {
+                    //     this.wrapperBack.removeChild(wrapperIntro);
+                    // }, 800);
+                    this.wrapperBottom.removeChild(wrapperBottomMenu);
+                    this.authorsStart();
+                }
+            });
+            tl
+                .to(wrapperTopTitle, {
+                    autoAlpha: 0,
+                    duration: 0.3,
+                    y: '-10%'
+                })
+                .to(wrapperBottomMenu, {
+                    duration: 0.3,
+                    // delay: '-0.4',
+                    autoAlpha: 0
+                })
+            ;
+        });
+
+        clickAbout.addEventListener('click', () => {
+            let tl = gsap.timeline({
+                onComplete: () => {
+                    this.wrapperTop.innerHTML = '';
+                    this.wrapperTop.className = 'wrapper__top';
+                    gsap.to(this.wrapperIntro, {
+                        duration: '0.5',
+                        // delay: '0.2',
+                        autoAlpha: 0,
+                        zIndex: '-1'
+                    });
+                    gsap.to(this.wrapperCategoryBack, {
+                        // duration: '0.5',
+                        delay: '0.2',
+                        autoAlpha: 1,
+                        zIndex: 1
+                    });
+                    // setTimeout(() => {
+                    //     this.wrapperBack.removeChild(wrapperIntro);
+                    // }, 800);
+                    this.wrapperBottom.removeChild(wrapperBottomMenu);
+                    this.aboutStart();
+                }
+            });
+            tl
+                .to(wrapperTopTitle, {
+                    autoAlpha: 0,
+                    duration: 0.3,
+                    y: '-10%'
+                })
+                .to(wrapperBottomMenu, {
+                    duration: 0.3,
+                    // delay: '-0.4',
+                    autoAlpha: 0
+                })
+            ;
+        });
+    }
+
+    /* Authors */
+    authorsStart() {
+        const authorsLoad = new About();
+
+        authorsLoad.aboutAuthors('Сценарист',
+            'Инна Ямщикова',
+            'Художники',
+            'Елена Расторгуева',
+            'Анастасия Полякова',
+            'Программист',
+            'Александр Суворов');
+
+        const
+            containerAbout = document.querySelector('.container__about_block'),
+            wrapperTopTitle = document.querySelector('.wrapper__top_title'),
+            wrapperAboutBack = document.querySelector('.wrapper__intro_about'),
+            containerAboutInside = document.querySelector('.container__about_inside')
+        ;
+
+        this.arrowBackLoad.arrowBack();
+        const arrowBackClick = document.getElementById('arrowBack');
+        this.wrapperBottom.appendChild(arrowBackClick);
+
+        arrowBackClick.addEventListener('click', () => {
+            let tl = gsap.timeline({
+                onComplete: () => {
+                    this.wrapperBottom.removeChild(arrowBackClick);
+                    this.container.removeChild(containerAbout);
+                    this.wrapperTop.removeChild(wrapperTopTitle);
+                    this.wrapperBack.removeChild(wrapperAboutBack);
+                    gsap.to(this.wrapperCategoryBack, {
+                        duration: '0.5',
+                        // delay: '0.1',
+                        autoAlpha: 0,
+                        zIndex: '0'
+                    });
+                    if (document.body.clientWidth < 570 || screen.width < 570) {
+                        containerAboutInside.style.height = 'initial';
+                        this.container.style.width = '';
+                        this.container.style.padding = '';
+                    }
+                    this.initGame();
+                }
+            });
+            tl
+                .to(wrapperTopTitle, {
+                    autoAlpha: 0,
+                    delay: '-0.1',
+                    y: '-10%'
+                })
+                .to([
+                    containerAbout,
+                    arrowBackClick,
+                    wrapperAboutBack], {
+                    autoAlpha: 0,
+                    delay: '-0.1'
+                })
+            ;
+        });
+    }
+
+    /* About */
+    aboutStart() {
+        const aboutLoad = new About();
+
+        aboutLoad.aboutLibrary('МБУК г.о. Самара «Самарская муниципальная информационно-библиотечная система» была создана в декабре 1986 года. На сегодняшний день в ее составе&nbsp;– Центральная городская библиотека имени Н.К. Крупской и 35 библиотек-филиалов, нашими читателями являются жители всех 9 районов города. Библиотеки системы&nbsp;– это информационные, образовательные центры, место культурного отдыха и общения. СМИБС находится в центре мировых событий, активно участвует в общероссийских акциях и в жизни города.', 'В библиотеках системы можно получить информацию и литературу по любой теме, доступ к электронным базам данных, воспользоваться услугами Интернет-залов, Центрами общественного доступа, побывать на презентациях выставок и творческих встречах, а также воспользоваться дополнительными сервисными услугами:<ul><li>ксерокопированием</li><li>сканированием</li><li>ламинированием</li><li>документов</li><li>распечаткой информации</li><li>на принтере</li><li>записью на электронные</li><li>носители</li></ul>');
+
+        const
+            wrapperTitleAuthors = document.querySelector('.wrapper__top_title'),
+            containerAboutLeft = document.querySelector('.container__about_left'),
+            containerAboutRight = document.querySelector('.container__about_right'),
+            containerAbout = document.querySelector('.container__about_block'),
+            wrapperTopTitle = document.querySelector('.wrapper__top_title'),
+            wrapperAboutBack = document.querySelector('.wrapper__intro_about')
+        ;
+
+        this.arrowBackLoad.arrowBack();
+        const arrowBackClick = document.getElementById('arrowBack');
+        this.wrapperBottom.appendChild(arrowBackClick);
+
+        arrowBackClick.addEventListener('click', () => {
+            let tl = gsap.timeline({
+                onComplete: () => {
+                    this.wrapperBottom.removeChild(arrowBackClick);
+                    this.container.removeChild(containerAbout);
+                    this.wrapperTop.removeChild(wrapperTopTitle);
+                    this.wrapperBack.removeChild(wrapperAboutBack);
+                    this.container.style.width = '45rem';
+                    gsap.to(this.wrapperCategoryBack, {
+                        duration: '0.5',
+                        // delay: '0.1',
+                        autoAlpha: 0,
+                        zIndex: '0'
+                    });
+                    if (document.body.clientWidth < 570 || screen.width < 570) {
+                        this.container.style.width = '';
+                        this.container.style.padding = '';
+                    }
+                    this.initGame();
+                }
+            });
+            tl
+                .to(wrapperTopTitle, {
+                    autoAlpha: 0,
+                    delay: '-0.1',
+                    y: '-10%'
+                })
+                .to([
+                    containerAbout,
+                    arrowBackClick,
+                    wrapperAboutBack], {
+                    autoAlpha: 0,
+                    delay: '-0.1'
+                })
+            ;
+        });
     }
 }
 
