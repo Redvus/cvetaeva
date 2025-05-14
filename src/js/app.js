@@ -1,5 +1,7 @@
 import '../scss/main.scss';
 import { Intro } from "./Intro.js";
+import { Authors } from "./Authors.js";
+import { About } from "./About.js";
 
 class Game {
 

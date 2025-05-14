@@ -1,5 +1,6 @@
 import { gsap } from "gsap";
 import { About } from "./About.js";
+import { Authors } from "./Authors.js";
 import { ArrowsAll } from "./ArrowsAll.js";
 import { Sounds } from "./Sounds.js";
 import { CategoryLoad } from "./CategoryLoad.js";
@@ -22,13 +23,10 @@ class Intro {
         this.wrapperIntro = document.querySelector('.wrapper__intro');
         // this.backgroundMusicID = document.getElementById('backgroundMusicID');
 
-        this.introBack = document.createElement('div');
         this.wrapperTopTitle = document.createElement('div');
 
-        // introBack.className = 'wrapper__intro';
         this.wrapperTop.className += ' wrapper__top_intro';
         this.wrapperTopTitle.className = 'wrapper__top_title wrapper__top_title--intro';
-        // wrapperBack.appendChild(introBack);
 
         this.wrapperTopTitle.innerHTML = `
             <h1>Марина Цветаева:<br />путешествие в поэзию</h1>
@@ -48,53 +46,29 @@ class Intro {
     }
 
     introAnim() {
-        const
-            introTitleBottom = document.getElementById('introTitleBottom'),
-            wrapperBottomMenu = document.querySelectorAll('.wrapper__bottom_menu > li'),
-            wrapperIntro = document.querySelector('.wrapper__intro'),
-            wrapperTitle = document.querySelector('.wrapper__top_title')
-        ;
-
         let tl = gsap.timeline();
         tl
-            .from(wrapperTitle, {
-                duration: 0.4,
-                delay: 0.2,
+            .from(this.wrapperTopTitle, {
+                duration: 0.5,
+                delay: 0.1,
                 autoAlpha: 0,
                 y: '-10%'
             })
-            // .from(wrapperIntro, {
-            //     duration: 0.4,
-            //     delay: '-0.1',
-            //     autoAlpha: 0
-            // })
-            .from(wrapperBottomMenu, {
-                duration: 0.4,
-                delay: '-0.1',
-                stagger: '0.05',
+            .from(this.introBlockButtons, {
+                duration: 0.3,
+                delay: '-0.2',
                 autoAlpha: 0
             })
         ;
     }
 
     initGame() {
+        this.clickLoadGame = document.getElementById('clickLoadGame');
+        this.clickAuthors = document.getElementById('clickAboutAuthors');
+        this.clickAbout = document.getElementById('clickAboutLibrary');
+        this.wrapperBottomMenu = document.querySelector('.wrapper__bottom_menu');
 
-        const
-            clickLoadGame = document.getElementById('clickLoadGame'),
-            clickAuthors = document.getElementById('clickAboutAuthors'),
-            clickAbout = document.getElementById('clickAboutLibrary'),
-            wrapperBottomMenu = document.querySelector('.wrapper__bottom_menu'),
-            wrapperTopTitle = document.querySelector('.wrapper__top_title')
-        ;
-
-        gsap.to(this.wrapperIntro, {
-            duration: 0.5,
-            // delay: '-0.1',
-            autoAlpha: 1,
-            zIndex: 1
-        });
-
-        clickLoadGame.addEventListener('click', () => {
+        this.clickLoadGame.addEventListener('click', () => {
 
             // Music Background
             // if (backgroundMusicID === null) {
@@ -121,21 +95,18 @@ class Intro {
                         autoAlpha: 1,
                         zIndex: 1
                     });
-                    // setTimeout(() => {
-                    //     this.wrapperBack.removeChild(wrapperIntro);
-                    // }, 800);
-                    this.wrapperBottom.removeChild(wrapperBottomMenu);
+                    this.wrapperBottom.removeChild(this.wrapperBottomMenu);
                     let initCategoryLoad = new CategoryLoad();
                     initCategoryLoad.initCategory();
                 }
             });
             tl
-                .to(wrapperTopTitle, {
+                .to(this.wrapperTopTitle, {
                     autoAlpha: 0,
                     duration: 0.3,
                     y: '-10%'
                 })
-                .to(wrapperBottomMenu, {
+                .to(this.wrapperBottomMenu, {
                     duration: 0.3,
                     // delay: '-0.2',
                     autoAlpha: 0
@@ -143,197 +114,67 @@ class Intro {
             ;
         });
 
-        clickAuthors.addEventListener('click', () => {
+        this.clickAuthors.addEventListener('click', () => {
             let tl = gsap.timeline({
                 onComplete: () => {
                     this.wrapperTop.innerHTML = '';
                     this.wrapperTop.className = 'wrapper__top';
-                    gsap.to(this.wrapperIntro, {
-                        duration: '0.5',
-                        // delay: '0.2',
-                        autoAlpha: 0,
-                        zIndex: '-1'
-                    });
-                    gsap.to(this.wrapperCategoryBack, {
-                        // duration: '0.5',
-                        delay: '0.2',
-                        autoAlpha: 1,
-                        zIndex: 1
-                    });
-                    // setTimeout(() => {
-                    //     this.wrapperBack.removeChild(wrapperIntro);
-                    // }, 800);
-                    this.wrapperBottom.removeChild(wrapperBottomMenu);
-                    this.authorsStart();
+                    this.wrapperBottom.removeChild(this.wrapperBottomMenu);
+                    new Authors(
+                        'Сценарист',
+                        'Инна Ямщикова',
+                        'Художники',
+                        'Елена Расторгуева',
+                        'Анастасия Полякова',
+                        'Программист',
+                        'Александр Суворов'
+                    );
                 }
             });
             tl
-                .to(wrapperTopTitle, {
+                .to(this.wrapperTopTitle, {
                     autoAlpha: 0,
                     duration: 0.3,
                     y: '-10%'
                 })
-                .to(wrapperBottomMenu, {
+                .to(this.wrapperBottomMenu, {
                     duration: 0.3,
                     // delay: '-0.4',
                     autoAlpha: 0
                 })
+                .to(this.wrapperIntro, {
+                    duration: '0.5',
+                    // delay: '0.2',
+                    autoAlpha: 0
+                });
             ;
         });
 
-        clickAbout.addEventListener('click', () => {
+        this.clickAbout.addEventListener('click', () => {
             let tl = gsap.timeline({
                 onComplete: () => {
                     this.wrapperTop.innerHTML = '';
                     this.wrapperTop.className = 'wrapper__top';
-                    gsap.to(this.wrapperIntro, {
-                        duration: '0.5',
-                        // delay: '0.2',
-                        autoAlpha: 0,
-                        zIndex: '-1'
-                    });
-                    gsap.to(this.wrapperCategoryBack, {
-                        // duration: '0.5',
-                        delay: '0.2',
-                        autoAlpha: 1,
-                        zIndex: 1
-                    });
-                    // setTimeout(() => {
-                    //     this.wrapperBack.removeChild(wrapperIntro);
-                    // }, 800);
-                    this.wrapperBottom.removeChild(wrapperBottomMenu);
-                    this.aboutStart();
+                    this.wrapperBottom.removeChild(this.wrapperBottomMenu);
+                    new About('МБУК г.о. Самара «Самарская муниципальная информационно-библиотечная система» была создана в декабре 1986 года. На сегодняшний день в ее составе&nbsp;– Центральная городская библиотека имени Н.К. Крупской и 35 библиотек-филиалов, нашими читателями являются жители всех 9 районов города. Библиотеки системы&nbsp;– это информационные, образовательные центры, место культурного отдыха и общения. СМИБС находится в центре мировых событий, активно участвует в общероссийских акциях и в жизни города.', 'В библиотеках системы можно получить информацию и литературу по любой теме, доступ к электронным базам данных, воспользоваться услугами Интернет-залов, Центрами общественного доступа, побывать на презентациях выставок и творческих встречах, а также воспользоваться дополнительными сервисными услугами:<ul><li>ксерокопированием</li><li>сканированием</li><li>ламинированием</li><li>документов</li><li>распечаткой информации</li><li>на принтере</li><li>записью на электронные</li><li>носители</li></ul>');
                 }
             });
             tl
-                .to(wrapperTopTitle, {
+                .to(this.wrapperTopTitle, {
                     autoAlpha: 0,
                     duration: 0.3,
                     y: '-10%'
                 })
-                .to(wrapperBottomMenu, {
+                .to(this.wrapperBottomMenu, {
                     duration: 0.3,
                     // delay: '-0.4',
                     autoAlpha: 0
                 })
-            ;
-        });
-    }
-
-    /* Authors */
-    authorsStart() {
-        const authorsLoad = new About();
-
-        authorsLoad.aboutAuthors('Сценарист',
-            'Инна Ямщикова',
-            'Художники',
-            'Елена Расторгуева',
-            'Анастасия Полякова',
-            'Программист',
-            'Александр Суворов');
-
-        const
-            containerAbout = document.querySelector('.container__about_block'),
-            wrapperTopTitle = document.querySelector('.wrapper__top_title'),
-            wrapperAboutBack = document.querySelector('.wrapper__intro_about'),
-            containerAboutInside = document.querySelector('.container__about_inside')
-        ;
-
-        this.arrowBackLoad.arrowBack();
-        const arrowBackClick = document.getElementById('arrowBack');
-        this.wrapperBottom.appendChild(arrowBackClick);
-
-        arrowBackClick.addEventListener('click', () => {
-            let tl = gsap.timeline({
-                onComplete: () => {
-                    this.wrapperBottom.removeChild(arrowBackClick);
-                    this.container.removeChild(containerAbout);
-                    this.wrapperTop.removeChild(wrapperTopTitle);
-                    this.wrapperBack.removeChild(wrapperAboutBack);
-                    gsap.to(this.wrapperCategoryBack, {
-                        duration: '0.5',
-                        // delay: '0.1',
-                        autoAlpha: 0,
-                        zIndex: '0'
-                    });
-                    if (document.body.clientWidth < 570 || screen.width < 570) {
-                        containerAboutInside.style.height = 'initial';
-                        this.container.style.width = '';
-                        this.container.style.padding = '';
-                    }
-                    this.initGame();
-                }
-            });
-            tl
-                .to(wrapperTopTitle, {
-                    autoAlpha: 0,
-                    delay: '-0.1',
-                    y: '-10%'
-                })
-                .to([
-                    containerAbout,
-                    arrowBackClick,
-                    wrapperAboutBack], {
-                    autoAlpha: 0,
-                    delay: '-0.1'
-                })
-            ;
-        });
-    }
-
-    /* About */
-    aboutStart() {
-        const aboutLoad = new About();
-
-        aboutLoad.aboutLibrary('МБУК г.о. Самара «Самарская муниципальная информационно-библиотечная система» была создана в декабре 1986 года. На сегодняшний день в ее составе&nbsp;– Центральная городская библиотека имени Н.К. Крупской и 35 библиотек-филиалов, нашими читателями являются жители всех 9 районов города. Библиотеки системы&nbsp;– это информационные, образовательные центры, место культурного отдыха и общения. СМИБС находится в центре мировых событий, активно участвует в общероссийских акциях и в жизни города.', 'В библиотеках системы можно получить информацию и литературу по любой теме, доступ к электронным базам данных, воспользоваться услугами Интернет-залов, Центрами общественного доступа, побывать на презентациях выставок и творческих встречах, а также воспользоваться дополнительными сервисными услугами:<ul><li>ксерокопированием</li><li>сканированием</li><li>ламинированием</li><li>документов</li><li>распечаткой информации</li><li>на принтере</li><li>записью на электронные</li><li>носители</li></ul>');
-
-        const
-            wrapperTitleAuthors = document.querySelector('.wrapper__top_title'),
-            containerAboutLeft = document.querySelector('.container__about_left'),
-            containerAboutRight = document.querySelector('.container__about_right'),
-            containerAbout = document.querySelector('.container__about_block'),
-            wrapperTopTitle = document.querySelector('.wrapper__top_title'),
-            wrapperAboutBack = document.querySelector('.wrapper__intro_about')
-        ;
-
-        this.arrowBackLoad.arrowBack();
-        const arrowBackClick = document.getElementById('arrowBack');
-        this.wrapperBottom.appendChild(arrowBackClick);
-
-        arrowBackClick.addEventListener('click', () => {
-            let tl = gsap.timeline({
-                onComplete: () => {
-                    this.wrapperBottom.removeChild(arrowBackClick);
-                    this.container.removeChild(containerAbout);
-                    this.wrapperTop.removeChild(wrapperTopTitle);
-                    this.wrapperBack.removeChild(wrapperAboutBack);
-                    this.container.style.width = '45rem';
-                    gsap.to(this.wrapperCategoryBack, {
-                        duration: '0.5',
-                        // delay: '0.1',
-                        autoAlpha: 0,
-                        zIndex: '0'
-                    });
-                    if (document.body.clientWidth < 570 || screen.width < 570) {
-                        this.container.style.width = '';
-                        this.container.style.padding = '';
-                    }
-                    this.initGame();
-                }
-            });
-            tl
-                .to(wrapperTopTitle, {
-                    autoAlpha: 0,
-                    delay: '-0.1',
-                    y: '-10%'
-                })
-                .to([
-                    containerAbout,
-                    arrowBackClick,
-                    wrapperAboutBack], {
-                    autoAlpha: 0,
-                    delay: '-0.1'
-                })
+                .to(this.wrapperIntro, {
+                    duration: '0.5',
+                    // delay: '0.2',
+                    autoAlpha: 0
+                });
             ;
         });
     }
