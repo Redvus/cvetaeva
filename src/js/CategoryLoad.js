@@ -6,160 +6,113 @@ import { Category } from "./Category.js";
 import { QuestCat_1 } from "./QuestCat_1.js";
 import { QuestCat_2 } from "./QuestCat_2.js";
 import { QuestCat_3 } from "./QuestCat_3.js";
-import { Game } from "./app.js";
+import { Intro } from "./Intro.js";
 
 class CategoryLoad {
 
-    initCategory() {
-        const
-            categoryLoad = new Category(),
-            arrowBackLoad = new ArrowsAll(),
-            settingsLoad = new Settings(),
-            questionLoads_1 = new QuestCat_1(),
-            questionLoads_2 = new QuestCat_2(),
-            questionLoads_3 = new QuestCat_3()
-        ;
+    constructor() {
+        this.soundsLoad = new Sounds();
+        this.arrowBackLoad = new ArrowsAll();
+        this.categoryLoad = new Category();
+        this.settingsLoad = new Settings();
+        this.questionLoads_1 = new QuestCat_1();
+        this.questionLoads_2 = new QuestCat_2();
+        this.questionLoads_3 = new QuestCat_3();
+        this.initLayout();
+        this.initCategory();
+        this.initСategoryBack();
+        this.initCategorySettings();
+        this.initCategoryLoadAnim();
 
-        const
-            wrapper = document.querySelector('.wrapper'),
-            container = document.querySelector('.container'),
-            wrapperTop = document.querySelector('.wrapper__top'),
-            wrapperTopTitle = document.createElement('div'),
-            wrapperBottom = document.querySelector('.wrapper__bottom'),
-            wrapperBack = document.querySelector('.wrapper__back'),
-            containerQuest = document.querySelector('.container-quest'),
-            backgroundMusicID = document.getElementById('backgroundMusicID'),
-            wrapperIntro = document.querySelector('.wrapper__intro'),
-            wrapperCategoryBack = document.querySelector('.wrapper__category_back'),
-            containerCategoryBlock = document.createElement('div'),
-            screenBrowserWidth = 400,
-            soundsLoad = new Sounds()
-        ;
+        // this.initDev();
+    }
 
-        // container.className = 'container container-category';
-        containerCategoryBlock.className = 'container__category';
-        // wrapperTopTitle.className = 'wrapper__top_title';
-        container.appendChild(containerCategoryBlock);
+    initLayout() {
+        this.wrapper = document.querySelector('.wrapper');
+        this.container = document.querySelector('.container');
+        this.wrapperTop = document.querySelector('.wrapper__top');
+        this.wrapperTopTitle = document.createElement('div');
+        this.wrapperBottom = document.querySelector('.wrapper__bottom');
+        this.wrapperBack = document.querySelector('.wrapper__back');
+        this.containerQuest = document.querySelector('.container-quest');
+        this.backgroundMusicID = document.getElementById('backgroundMusicID');
+        this.wrapperIntro = document.querySelector('.wrapper__intro');
+        this.wrapperCategoryBack = document.querySelector('.wrapper__category_back');
+        this.containerCategoryBlock = document.createElement('div');
+        this.screenBrowserWidth = 400;
 
-        categoryLoad.categoryMain('SecretHit', 'Тайный жар');
-        categoryLoad.categoryMain('ChildLove', 'Каждый стих – дитя любви');
-        categoryLoad.categoryMain('ThreeFaces', 'Три лика');
-        categoryLoad.categoryProgress('progressSecretHitValue', 'progressSecretHitAll');
-        categoryLoad.categoryProgress('progressChildLoveValue', 'progressChildLoveAll');
-        categoryLoad.categoryProgress('progressThreeFacesValue', 'progressThreeFacesAll');
+        this.containerCategoryBlock.className = 'container__category';
+        this.container.appendChild(this.containerCategoryBlock);
 
-        const
-            containerCategory = document.querySelector('.container__category'),
-            categorySecretHit = document.getElementById('categorySecretHit'),
-            categoryChildLove = document.getElementById('categoryChildLove'),
-            categoryThreeFaces = document.getElementById('categoryThreeFaces')
-        ;
+        // Кнопки
+        this.arrowBackLoad.arrowBack();
+        this.arrowBackLoad.clearStorage();
+        this.arrowBackClick = document.getElementById('arrowBack');
+        this.settingsClick = document.getElementById('settingsClick');
+        this.wrapperBottom.appendChild(this.arrowBackClick);
+        this.wrapperBottom.appendChild(this.settingsClick);
 
-        let progressSecretHitQuestSum = JSON.parse(localStorage.getItem('progressSecretHitAll')),
-            progressChildLoveQuestSum = JSON.parse(localStorage.getItem('progressChildLoveAll')),
-            progressThreeFacesQuestSum = JSON.parse(localStorage.getItem('progressThreeFacesAll'))
-        ;
+        // Категории
+        this.categoryLoad.categoryMain('SecretHit', 'Тайный жар');
+        this.categoryLoad.categoryMain('ChildLove', 'Каждый стих – дитя любви');
+        this.categoryLoad.categoryMain('ThreeFaces', 'Три лика');
+        this.categoryLoad.categoryProgress('progressSecretHitValue', 'progressSecretHitAll');
+        this.categoryLoad.categoryProgress('progressChildLoveValue', 'progressChildLoveAll');
+        this.categoryLoad.categoryProgress('progressThreeFacesValue', 'progressThreeFacesAll');
 
-        const
-            catBack = document.querySelector('.wrapper__category_back'),
-            catBack_1 = document.querySelector('.wrapper__category_back--first'),
-            catBack_2 = document.querySelector('.wrapper__category_back--second'),
-            catBack_3 = document.querySelector('.wrapper__category_back--third')
-        ;
+        this.categorySecretHit = document.getElementById('categorySecretHit');
+        this.categoryChildLove = document.getElementById('categoryChildLove');
+        this.categoryThreeFaces = document.getElementById('categoryThreeFaces');
+    }
 
-        // catBack_1.className = 'wrapper__category_back wrapper__category_back--first';
-        // catBack_2.className = 'wrapper__category_back wrapper__category_back--second';
-        // catBack_3.className = 'wrapper__category_back wrapper__category_back--third';
-
-        function categoryAnimation() {
-            let tl = gsap.timeline();
-            tl
-                // .from(catBack, {
-                //     autoAlpha: 0,
-                //     duration: 0.6,
-                //     delay: '-0.2'
-                // })
-                .from([categorySecretHit, categoryChildLove, categoryThreeFaces], {
-                    autoAlpha: 0,
-                    duration: 0.4,
-                    delay: '0.3',
-                    // y: "-0.5rem",
-                    stagger: 0.1
-                })
-            ;
-        }
-        categoryAnimation();
-
-        arrowBackLoad.arrowBack();
-        const arrowBackClick = document.getElementById('arrowBack');
-        wrapperBottom.appendChild(arrowBackClick);
-
-        arrowBackClick.addEventListener('click', () => {
+    initСategoryBack() {
+        this.arrowBackClick.addEventListener('click', () => {
             let tl = gsap.timeline({
                 onComplete: () => {
-                    wrapperBottom.removeChild(arrowBackClick);
-                    wrapperBottom.removeChild(settingsClick);
-                    container.removeChild(containerCategoryBlock);
+                    this.wrapperBottom.removeChild(this.arrowBackClick);
+                    this.wrapperBottom.removeChild(this.settingsClick);
+                    this.container.removeChild(this.containerCategoryBlock);
                     // container.removeChild(categorySecretHit);
                     // container.removeChild(categoryChildLove);
                     // container.removeChild(categoryThreeFaces);
-                    gsap.to(wrapperCategoryBack, {
-                        duration: '0.5',
-                        autoAlpha: 0,
-                        zIndex: '-1'
-                    });
-                    gsap.to(wrapperIntro, {
-                        delay: '0.2',
-                        autoAlpha: 1,
-                        zIndex: 1
-                    });
-                    // setTimeout(() => {
-                    //     wrapperBack.removeChild(catBack);
-                    // }, 2000);
-                    const initGame = new Game();
-                    initGame.initGame();
+                    new Intro();
                 }
             });
             tl
-                // .to(wrapperTopTitle, {
-                //     autoAlpha: 0,
-                //     delay: '-0.1',
-                //     y: '-10%'
-                // })
                 .to([
-                    arrowBackClick,
-                    settingsClick,
-                    containerCategoryBlock], {
+                    this.arrowBackClick,
+                    this.settingsClick,
+                    this.containerCategoryBlock
+                ], {
                     autoAlpha: 0,
                     delay: '-0.1',
                     stagger: 0.07
                 })
+                .to(this.wrapperIntro, {
+                    autoAlpha: 1,
+                    duration: '0.6',
+                    delay: '-0.3'
+                })
             ;
         });
+    }
 
-        //Settings
-        arrowBackLoad.clearStorage();
-        const
-            settingsClick = document.getElementById('settingsClick'),
-            setProgressCat_1 = document.getElementById('progressSecretHitValue'),
-            setProgressCat_2 = document.getElementById('progressChildLoveValue'),
-            setProgressCat_3 = document.getElementById('progressThreeFacesValue')
-        ;
+    initCategorySettings() {
+        this.setProgressCat_1 = document.getElementById('progressSecretHitValue');
+        this.setProgressCat_2 = document.getElementById('progressChildLoveValue');
+        this.setProgressCat_3 = document.getElementById('progressThreeFacesValue');
 
-        wrapperBottom.appendChild(settingsClick);
-        settingsClick.addEventListener('click', () => {
-            settingsLoad.settingsBlock();
-            const
-                settingsClearButton = document.getElementById('clearProgressButton'),
-                settingsLightbox = document.querySelector('.wrapper__lightbox'),
-                settingsBack = document.querySelector('.wrapper__lightbox_back'),
-                settingsBlock = document.querySelector('.wrapper__lightbox_block'),
-                settingsTitle = document.querySelector('.wrapper__lightbox_title'),
-                settingsClose = document.getElementById('settingsCloseButton'),
-                settingsCloseArray = [settingsClose, settingsBack]
-            ;
+        this.settingsClick.addEventListener('click', () => {
+            this.settingsLoad.settingsBlock();
+            this.settingsClearButton = document.getElementById('clearProgressButton');
+            this.settingsLightbox = document.querySelector('.wrapper__lightbox');
+            this.settingsBack = document.querySelector('.wrapper__lightbox_back');
+            this.settingsBlock = document.querySelector('.wrapper__lightbox_block');
+            this.settingsTitle = document.querySelector('.wrapper__lightbox_title');
+            this.settingsClose = document.getElementById('settingsCloseButton');
+            this.settingsCloseArray = [this.settingsClose, this.settingsBack];
 
-            settingsClearButton.addEventListener('click', () => {
+            this.settingsClearButton.addEventListener('click', () => {
                 localStorage.clear();
                 this.localSetCat_1();
                 this.localSetCat_2();
@@ -168,104 +121,95 @@ class CategoryLoad {
                 // setTimeout(() => {
                 //     location.reload();
                 // }, 800);
-                setProgressCat_1.textContent = JSON.parse(localStorage.getItem('progressSecretHitAll'));
-                setProgressCat_2.textContent = JSON.parse(localStorage.getItem('progressChildLoveAll'));
-                setProgressCat_3.textContent = JSON.parse(localStorage.getItem('progressThreeFacesAll'));
-                categorySecretHit.firstElementChild.className = 'category__main';
-                categorySecretHit.style.userSelect = '';
-                categorySecretHit.style.pointerEvents = '';
-                categoryChildLove.firstElementChild.className = 'category__main';
-                categoryChildLove.style.userSelect = '';
-                categoryChildLove.style.pointerEvents = '';
-                categoryThreeFaces.firstElementChild.className = 'category__main';
-                categoryThreeFaces.style.userSelect = '';
-                categoryThreeFaces.style.pointerEvents = '';
+                this.setProgressCat_1.textContent = JSON.parse(localStorage.getItem('progressSecretHitAll'));
+                this.setProgressCat_2.textContent = JSON.parse(localStorage.getItem('progressChildLoveAll'));
+                this.setProgressCat_3.textContent = JSON.parse(localStorage.getItem('progressThreeFacesAll'));
+                this.categorySecretHit.firstElementChild.className = 'category__main';
+                this.categorySecretHit.style.userSelect = '';
+                this.categorySecretHit.style.pointerEvents = '';
+                this.categoryChildLove.firstElementChild.className = 'category__main';
+                this.categoryChildLove.style.userSelect = '';
+                this.categoryChildLove.style.pointerEvents = '';
+                this.categoryThreeFaces.firstElementChild.className = 'category__main';
+                this.categoryThreeFaces.style.userSelect = '';
+                this.categoryThreeFaces.style.pointerEvents = '';
 
                 let tl = gsap.timeline({
                     onComplete: () => {
-                        wrapper.removeChild(settingsLightbox);
+                        this.wrapper.removeChild(this.settingsLightbox);
                     }
                 });
                 tl
-                    .to(settingsTitle, {
-                        duration: 0.3,
-                        y: '-10%',
-                        autoAlpha: 0
-                    })
-                    .to(settingsBlock, {
+                    // .to(this.settingsTitle, {
+                    //     duration: 0.3,
+                    //     y: '-10%',
+                    //     autoAlpha: 0
+                    // })
+                    .to(this.settingsBlock, {
                         duration: 0.3,
                         y: '3%',
                         autoAlpha: 0
                     })
-                    .to(settingsBack, {
+                    .to(this.settingsBack, {
                         duration: 0.3,
                         autoAlpha: 0
                     })
                 ;
             });
 
-            for (let i = 0; i < settingsCloseArray.length; i++) {
-                settingsCloseArray[i].addEventListener('click', () => {
+            for (let i = 0; i < this.settingsCloseArray.length; i++) {
+                this.settingsCloseArray[i].addEventListener('click', () => {
                     let tl = gsap.timeline({
                         onComplete: () => {
-                            wrapper.removeChild(settingsLightbox);
+                            this.wrapper.removeChild(this.settingsLightbox);
                         }
                     });
                     tl
-                        .to(settingsTitle, {
-                            duration: 0.3,
-                            y: '-10%',
-                            autoAlpha: 0
-                        })
-                        .to(settingsBlock, {
+                        // .to(this.settingsTitle, {
+                        //     duration: 0.3,
+                        //     y: '-10%',
+                        //     autoAlpha: 0
+                        // })
+                        .to(this.settingsBlock, {
                             duration: 0.3,
                             y: '3%',
                             autoAlpha: 0
                         })
-                        .to(settingsBack, {
+                        .to(this.settingsBack, {
                             duration: 0.3,
                             autoAlpha: 0
                         })
                     ;
                 });
             }
-
         });
+    }
+
+    initCategory() {
+        this.progressSecretHitQuestSum = JSON.parse(localStorage.getItem('progressSecretHitAll'));
+        this.progressChildLoveQuestSum = JSON.parse(localStorage.getItem('progressChildLoveAll'));
+        this.progressThreeFacesQuestSum = JSON.parse(localStorage.getItem('progressThreeFacesAll'));
+
+        this.catBack = document.querySelector('.wrapper__category_back');
+        this.catBack_1 = document.querySelector('.wrapper__category_back--first');
+        this.catBack_2 = document.querySelector('.wrapper__category_back--second');
+        this.catBack_3 = document.querySelector('.wrapper__category_back--third');
 
         //categoryCat_1 load
-        categorySecretHit.addEventListener('click', () => {
+        this.categorySecretHit.addEventListener('click', () => {
             // soundsLoad.rightAnswer('assets/games/kraevedia/sounds/cp_categoryLoad.ogg');
             let tl = gsap.timeline({
                 onComplete: () => {
-                    wrapperBottom.removeChild(arrowBackClick);
-                    wrapperBottom.removeChild(settingsClick);
-                    container.removeChild(containerCategoryBlock);
-                    // container.removeChild(categorySecretHit);
-                    // container.removeChild(categoryChildLove);
-                    // container.removeChild(categoryThreeFaces);
-                    // wrapperBack.removeChild(catBack);
-                    // container.className = 'container container-quest';
-                    categoryLoad.categoryQuest('Тайный жар');
-                    gsap.to(catBack, {
-                        duration: '0.5',
-                        // delay: '0.2',
-                        autoAlpha: 0,
-                        zIndex: '-1'
-                    });
-                    // wrapperBack.appendChild(catBack_1);
-                    gsap.to(catBack_1, {
-                        // duration: '0.5',
-                        delay: '0.2',
-                        autoAlpha: 1,
-                        zIndex: '1'
-                    });
+                    this.wrapperBottom.removeChild(this.arrowBackClick);
+                    this.wrapperBottom.removeChild(this.settingsClick);
+                    this.container.removeChild(this.containerCategoryBlock);
+                    this.categoryLoad.categoryQuest('Тайный жар');
                     this.localSetCat_1();
-                    questionLoads_1.questionCat_1_1();
+                    this.questionLoads_1.questionCat_1_1();
                 }
             });
             tl
-                .to([
-                    containerCategoryBlock], {
+                .to(this.containerCategoryBlock, {
                     autoAlpha: 0,
                     delay: '-0.1',
                     stagger: 0.07
@@ -274,38 +218,20 @@ class CategoryLoad {
         });
 
         //categoryCat_2 load
-        categoryChildLove.addEventListener('click', () => {
+        this.categoryChildLove.addEventListener('click', () => {
             // soundsLoad.rightAnswer('assets/games/kraevedia/sounds/cp_categoryLoad.ogg');
             let tl = gsap.timeline({
                 onComplete: () => {
-                    wrapperBottom.removeChild(arrowBackClick);
-                    wrapperBottom.removeChild(settingsClick);
-                    container.removeChild(containerCategoryBlock);
-                    // container.removeChild(categorySecretHit);
-                    // container.removeChild(categoryChildLove);
-                    // container.removeChild(categoryThreeFaces);
-                    // wrapper.removeChild(catBack);
-                    // container.className = 'container';
-                    categoryLoad.categoryQuest('Каждый стих–дитя любви');
-                    gsap.to(catBack, {
-                        duration: '0.5',
-                        // delay: '0.2',
-                        autoAlpha: 0,
-                        zIndex: '-1'
-                    });
-                    // wrapperBack.appendChild(catBack_1);
-                    gsap.to(catBack_2, {
-                        // duration: '0.5',
-                        delay: '0.2',
-                        autoAlpha: 1,
-                        zIndex: '1'
-                    });
+                    this.wrapperBottom.removeChild(this.arrowBackClick);
+                    this.wrapperBottom.removeChild(this.settingsClick);
+                    this.container.removeChild(this.containerCategoryBlock);
+                    this.categoryLoad.categoryQuest('Каждый стих–дитя любви');
                     this.localSetCat_2();
-                    questionLoads_2.questionCat_2_1();
+                    this.questionLoads_2.questionCat_2_1();
                 }
             });
             tl
-                .to(containerCategoryBlock, {
+                .to(this.containerCategoryBlock, {
                     autoAlpha: 0,
                     delay: '-0.1',
                     stagger: 0.07
@@ -314,34 +240,20 @@ class CategoryLoad {
         });
 
         //categoryCat_3 load
-        categoryThreeFaces.addEventListener('click', () => {
+        this.categoryThreeFaces.addEventListener('click', () => {
             // soundsLoad.rightAnswer('assets/games/kraevedia/sounds/cp_categoryLoad.ogg');
             let tl = gsap.timeline({
                 onComplete: () => {
-                    wrapperBottom.removeChild(arrowBackClick);
-                    wrapperBottom.removeChild(settingsClick);
-                    container.removeChild(containerCategoryBlock);
-                    categoryLoad.categoryQuest('Три лика');
-                    gsap.to(catBack, {
-                        duration: '0.5',
-                        // delay: '0.2',
-                        autoAlpha: 0,
-                        zIndex: '-1'
-                    });
-                    // wrapperBack.appendChild(catBack_1);
-                    gsap.to(catBack_3, {
-                        // duration: '0.5',
-                        delay: '0.2',
-                        autoAlpha: 1,
-                        zIndex: '1'
-                    });
+                    this.wrapperBottom.removeChild(this.arrowBackClick);
+                    this.wrapperBottom.removeChild(this.settingsClick);
+                    this.container.removeChild(this.containerCategoryBlock);
+                    this.categoryLoad.categoryQuest('Три лика');
                     this.localSetCat_3();
-                    questionLoads_3.questionCat_3_1();
+                    this.questionLoads_3.questionCat_3_1();
                 }
             });
             tl
-                .to([
-                    containerCategoryBlock], {
+                .to(this.containerCategoryBlock, {
                     autoAlpha: 0,
                     delay: '-0.1',
                     stagger: 0.07
@@ -349,22 +261,22 @@ class CategoryLoad {
             ;
         });
 
-        if (progressSecretHitQuestSum === 20) {
-            categorySecretHit.firstElementChild.className += ' category__main--hidden';
-            categorySecretHit.style.userSelect = 'none';
-            categorySecretHit.style.pointerEvents = 'none';
+        if (this.progressSecretHitQuestSum === 20) {
+            this.categorySecretHit.firstElementChild.className += ' category__main--hidden';
+            this.categorySecretHit.style.userSelect = 'none';
+            this.categorySecretHit.style.pointerEvents = 'none';
         }
 
-        if (progressChildLoveQuestSum === 20) {
-            categoryChildLove.firstElementChild.className += ' category__main--hidden';
-            categoryChildLove.style.userSelect = 'none';
-            categoryChildLove.style.pointerEvents = 'none';
+        if (this.progressChildLoveQuestSum === 20) {
+            this.categoryChildLove.firstElementChild.className += ' category__main--hidden';
+            this.categoryChildLove.style.userSelect = 'none';
+            this.categoryChildLove.style.pointerEvents = 'none';
         }
 
-        if (progressThreeFacesQuestSum === 20) {
-            categoryThreeFaces.firstElementChild.className += ' category__main--hidden';
-            categoryThreeFaces.style.userSelect = 'none';
-            categoryThreeFaces.style.pointerEvents = 'none';
+        if (this.progressThreeFacesQuestSum === 20) {
+            this.categoryThreeFaces.firstElementChild.className += ' category__main--hidden';
+            this.categoryThreeFaces.style.userSelect = 'none';
+            this.categoryThreeFaces.style.pointerEvents = 'none';
         }
     }
 
@@ -510,6 +422,40 @@ class CategoryLoad {
             localStorage.setItem('progressThreeFaces_19', JSON.stringify(0));
             localStorage.setItem('progressThreeFaces_20', JSON.stringify(0));
         }
+    }
+
+    initCategoryLoadAnim() {
+        let tl = gsap.timeline({
+            delay: '-0.3'
+        });
+        tl
+            .from([
+                this.categorySecretHit,
+                this.categoryChildLove,
+                this.categoryThreeFaces
+            ], {
+                autoAlpha: 0,
+                duration: 0.3,
+                delay: '0.3',
+                y: "-0.5rem",
+                stagger: 0.1
+            })
+            .from([
+                this.arrowBackClick,
+                this.settingsClick
+            ], {
+                duration: '0.3',
+                delay: '-0.1',
+                autoAlpha: 0,
+                y: '10%'
+            })
+        ;
+    }
+
+    initDev() {
+        const introBack = document.querySelector('.wrapper__intro');
+        introBack.style.opacity = '0';
+        introBack.style.visibility = 'none';
     }
 }
 

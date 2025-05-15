@@ -2,6 +2,7 @@ import '../scss/main.scss';
 import { Intro } from "./Intro.js";
 import { Authors } from "./Authors.js";
 import { About } from "./About.js";
+import { CategoryLoad } from "./CategoryLoad.js";
 
 class Game {
 
@@ -10,6 +11,8 @@ class Game {
         this.initLayoutBack();
         this.initAppend();
         new Intro();
+
+        // new CategoryLoad();
     }
 
     initLayout() {

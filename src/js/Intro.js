@@ -83,21 +83,21 @@ class Intro {
                 onComplete: () => {
                     this.wrapperTop.innerHTML = '';
                     this.wrapperTop.className = 'wrapper__top';
-                    gsap.to(this.wrapperIntro, {
-                        duration: '0.5',
-                        // delay: '0.2',
-                        autoAlpha: 0,
-                        zIndex: '-1'
-                    });
-                    gsap.to(this.wrapperCategoryBack, {
-                        // duration: '0.5',
-                        delay: '0.2',
-                        autoAlpha: 1,
-                        zIndex: 1
-                    });
                     this.wrapperBottom.removeChild(this.wrapperBottomMenu);
-                    let initCategoryLoad = new CategoryLoad();
-                    initCategoryLoad.initCategory();
+                    // gsap.to(this.wrapperIntro, {
+                    //     duration: '0.5',
+                    //     // delay: '0.2',
+                    //     autoAlpha: 0,
+                    //     zIndex: '-1'
+                    // });
+                    // gsap.to(this.wrapperCategoryBack, {
+                    //     // duration: '0.5',
+                    //     delay: '0.2',
+                    //     autoAlpha: 1,
+                    //     zIndex: 1
+                    // });
+                    new CategoryLoad();
+                    // initCategoryLoad.initCategory();
                 }
             });
             tl
@@ -108,9 +108,14 @@ class Intro {
                 })
                 .to(this.wrapperBottomMenu, {
                     duration: 0.3,
-                    // delay: '-0.2',
+                    // delay: '-0.4',
                     autoAlpha: 0
                 })
+                .to(this.wrapperIntro, {
+                    duration: '0.5',
+                    // delay: '0.2',
+                    autoAlpha: 0
+                });
             ;
         });
 

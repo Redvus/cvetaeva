@@ -51,7 +51,7 @@ class ArrowsAll {
                 autoAlpha: 0
             });
         }
-        settingsClickAnim();
+        // settingsClickAnim();
     }
 
     arrowNext() {
@@ -176,7 +176,7 @@ class ArrowsAll {
                 autoAlpha: 0
             });
         }
-        settingsClickAnim();
+        // settingsClickAnim();
     }
 }
 

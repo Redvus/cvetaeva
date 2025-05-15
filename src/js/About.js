@@ -66,30 +66,6 @@ class About {
         this.wrapperBottom.appendChild(this.arrowBackClick);
     }
 
-    initAboutAnim() {
-        let tl = new gsap.timeline();
-
-        tl
-            .from(this.containerAbout, {
-                autoAlpha: 0,
-                duration: 0.4,
-                scale: 0.97
-            })
-            .from(this.wrapperTopTitle, {
-                duration: '0.3',
-                delay: '-0.1',
-                autoAlpha: 0,
-                y: '-10%'
-            })
-            .from(this.arrowBackClick, {
-                duration: '0.3',
-                delay: '-0.1',
-                autoAlpha: 0,
-                y: '10%'
-            })
-        ;
-    }
-
     initAboutBack() {
         this.arrowBackClick.addEventListener('click', () => {
             let tl = gsap.timeline({
@@ -125,6 +101,30 @@ class About {
                 })
             ;
         });
+    }
+
+    initAboutAnim() {
+        let tl = new gsap.timeline();
+
+        tl
+            .from(this.containerAbout, {
+                autoAlpha: 0,
+                duration: 0.4,
+                scale: 0.97
+            })
+            .from(this.wrapperTopTitle, {
+                duration: '0.3',
+                delay: '-0.1',
+                autoAlpha: 0,
+                y: '-10%'
+            })
+            .from(this.arrowBackClick, {
+                duration: '0.3',
+                delay: '-0.1',
+                autoAlpha: 0,
+                y: '10%'
+            })
+        ;
     }
 
     initDev() {
