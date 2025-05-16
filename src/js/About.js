@@ -26,7 +26,7 @@ class About {
         this.containerAboutRight = document.createElement('div');
         this.wrapperTop = document.querySelector('.wrapper__top');
         this.wrapperBottom = document.querySelector('.wrapper__bottom');
-        this.wrapperIntro = document.querySelector('.wrapper__intro');
+        this.wrapperIntro = document.querySelector('.wrapper__back_intro');
 
         // if (document.body.clientWidth < 570 || screen.width < 570) {
         //     container.style.width = 'calc(100% - 2rem)';
@@ -128,7 +128,7 @@ class About {
     }
 
     initDev() {
-        const introBack = document.querySelector('.wrapper__intro');
+        const introBack = document.querySelector('.wrapper__back_intro');
         introBack.style.opacity = '0';
         introBack.style.visibility = 'none';
     }

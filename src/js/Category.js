@@ -1,18 +1,38 @@
 import { gsap } from "gsap";
+import { ArrowsAll } from "./ArrowsAll.js";
+import { CategoryLoad } from "./CategoryLoad.js";
 
 class Category {
 
+    constructor() {
+        this.arrowBackLoad = new ArrowsAll();
+        this.initLayout();
+        // this.initСategoryBack();
+        // this.catQuestAnim();
+
+        // this.initDev();
+    }
+
+    initLayout() {
+        this.wrapper = document.querySelector('.wrapper');
+        this.container = document.querySelector('.container');
+        this.wrapperTop = document.querySelector('.wrapper__top');
+        this.wrapperBottom = document.querySelector('.wrapper__bottom');
+        this.wrapperIntro = document.querySelector('.wrapper__back_intro');
+
+        // Кнопки
+        // this.arrowBackLoad.arrowBack();
+        this.arrowBackClick = document.getElementById('arrowBack');
+    }
+
     categoryMain(categoryID, categoryTitle) {
-        const
-            containerCat = document.querySelector('.container__category'),
-            categoryBlock = document.createElement('div'),
-            categoryBlockInside = document.createElement('div'),
-            wrapperTopTitle = document.createElement('div'),
-            categoryStarsCount = '20'
-        ;
-        categoryBlock.className = 'container__category_category';
-        categoryBlock.id = `category${categoryID}`;
-        categoryBlock.innerHTML = `
+        this.containerCat = document.querySelector('.container__category'),
+        this.categoryBlock = document.createElement('div'),
+        this.categoryStarsCount = '20';
+
+        this.categoryBlock.className = 'container__category_category';
+        this.categoryBlock.id = `category${categoryID}`;
+        this.categoryBlock.innerHTML = `
             <div class="category__main">
                 <div class="category__main_title">
                     <h3>${categoryTitle}</h3>
@@ -24,12 +44,12 @@ class Category {
                         </svg>
                     <i class="fas fa-star"></i>
                     <div class="category__main_value">
-                        <span id="progress${categoryID}Value"></span>&nbsp;/&nbsp;${categoryStarsCount}
+                        <span id="progress${categoryID}Value"></span>&nbsp;/&nbsp;${this.categoryStarsCount}
                     </div>
                 </div>
             </div>
         `;
-        containerCat.appendChild(categoryBlock);
+        this.containerCat.appendChild(this.categoryBlock);
     }
 
     categoryProgress(progressID, progressNameValue) {
@@ -47,81 +67,16 @@ class Category {
 
     categoryQuest(categoryTitle) {
         const
-            wrapper = document.querySelector('.wrapper'),
-            wrapperCategoryBack = document.createElement('picture'),
-            wrapperBack = document.querySelector('.wrapper__back'),
             wrapperCategoryTitle = document.createElement('div'),
-            wrapperTop = document.querySelector('.wrapper__top'),
-            wrapperCategoryBackTop = document.createElement('div'),
-            wrapperPreloader = document.createElement('div'),
-            containerQuest = document.createElement('div'),
-            containerQuestBottom = document.createElement('div'),
-            containerQuestBottomText = document.createElement('div'),
-            containerQuestBottomButtons = document.createElement('ul')
+            wrapperTop = document.querySelector('.wrapper__top')
         ;
 
-        // wrapperCategoryBack.className = 'wrapper__category_back';
-        // wrapperCategoryBackTop.className = 'wrapper__category_back wrapper__category_back--first';
-        // wrapperCategoryBack.id = `${categoryBackID}`;
-        // wrapperCategoryBackTop.id = `${categoryBackTopID}`;
         wrapperCategoryTitle.className = 'wrapper__top_title';
-        // wrapperPreloader.className = 'wrapper__preloader';
-
-        // containerQuest.className = 'container-quest';
-        // containerQuestBottom.className = 'container-quest__bottom';
-
-        // wrapper.appendChild(wrapperPreloader);
-        // wrapperBack.appendChild(wrapperCategoryBack);
-        // wrapperBack.appendChild(wrapperCategoryBackTop);
-        wrapperTop.appendChild(wrapperCategoryTitle);
-        // wrapper.appendChild(containerQuest);
-        // containerQuest.appendChild(containerQuestBottom);
-
         wrapperCategoryTitle.innerHTML = `
             <h1>${categoryTitle}</h1>
         `;
 
-        const
-            wrapperCatBack = document.querySelector('.wrapper__back_category'),
-            wrapperCatBackTop = document.querySelector('.wrapper__back_category--top'),
-            wrapperCatTitle = document.querySelector('.wrapper__top_title'),
-            wrapperPreload = document.querySelector('.wrapper__preloader')
-        ;
-
-        function catQuestAnim() {
-            let tl = gsap.timeline({
-                onComplete: () => {
-                    // wrapper.removeChild(wrapperPreload);
-                }
-            });
-
-            tl
-                // .to(wrapperPreload, {
-                //     duration: 0.6,
-                //     delay: '0.3',
-                //     autoAlpha: 0
-                // })
-                // .from(containerQuestBottom, {
-                //     autoAlpha: 0,
-                //     duration: 0.4,
-                //     delay: '-0.2',
-                //     // y: '50%',
-                //     scale: 1.05
-                // })
-            // .from([wrapperCatBack, wrapperCatBackTop], {
-                //     duration: '0.6',
-                //     autoAlpha: 0
-                //     // scale: '1.05'
-                // })
-                .from(wrapperCatTitle, {
-                    duration: '0.3',
-                    delay: '-0.1',
-                    autoAlpha: 0,
-                    y: '-10%'
-                })
-            ;
-        }
-        catQuestAnim();
+        wrapperTop.appendChild(wrapperCategoryTitle);
     }
 
     categoryQuestSimple(categoryTitle, categoryBackID) {
@@ -166,6 +121,60 @@ class Category {
             ;
         }
         catQuestAnim();
+    }
+
+    initСategoryBack() {
+        this.arrowBackClick.addEventListener('click', () => {
+            let tl = gsap.timeline({
+                onComplete: () => {
+                    this.wrapperBottom.removeChild(this.arrowBackClick);
+                    this.container.removeChild(this.containerCategoryBlock);
+                    // container.removeChild(categorySecretHit);
+                    // container.removeChild(categoryChildLove);
+                    // container.removeChild(categoryThreeFaces);
+                    new CategoryLoad();
+                }
+            });
+            tl
+                .to([
+                    this.arrowBackClick,
+                    this.containerCategoryBlock
+                ], {
+                    autoAlpha: 0,
+                    delay: '-0.1',
+                    stagger: 0.07
+                })
+                .to(this.wrapperIntro, {
+                    autoAlpha: 1,
+                    duration: '0.6',
+                    delay: '-0.3'
+                })
+            ;
+        });
+    }
+
+    catQuestAnim() {
+        this.wrapperCatTitle = document.querySelector('.wrapper__top_title');
+
+        let tl = gsap.timeline({
+            onComplete: () => {
+                // wrapper.removeChild(wrapperPreload);
+            }
+        });
+
+        tl
+            .from(this.wrapperCatTitle, {
+                duration: '0.3',
+                delay: '-0.1',
+                autoAlpha: 0,
+                y: '-10%'
+            })
+        ;
+    }
+
+    initDev() {
+        this.wrapperIntro.style.opacity = '0';
+        this.wrapperIntro.style.visibility = 'none';
     }
 }
 

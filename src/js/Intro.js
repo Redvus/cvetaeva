@@ -20,7 +20,7 @@ class Intro {
         this.wrapperBack = document.querySelector('.wrapper__back');
         this.wrapperBottom = document.querySelector('.wrapper__bottom');
         this.wrapperTop = document.querySelector('.wrapper__top');
-        this.wrapperIntro = document.querySelector('.wrapper__intro');
+        this.wrapperIntro = document.querySelector('.wrapper__back_intro');
         // this.backgroundMusicID = document.getElementById('backgroundMusicID');
 
         this.wrapperTopTitle = document.createElement('div');

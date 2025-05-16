@@ -10,9 +10,9 @@ class Game {
         this.initLayout();
         this.initLayoutBack();
         this.initAppend();
-        new Intro();
+        // new Intro();
 
-        // new CategoryLoad();
+        new CategoryLoad();
     }
 
     initLayout() {
@@ -33,16 +33,16 @@ class Game {
     initLayoutBack() {
         this.wrapperIntro = document.createElement('div');
         this.wrapperCategoryBack = document.createElement('div');
-        this.wrapperIntro.classList = "wrapper__intro";
-        this.wrapperCategoryBack.classList = "wrapper__category_back";
+        this.wrapperIntro.classList = "wrapper__back_intro";
+        this.wrapperCategoryBack.classList = "wrapper__back_category";
 
         this.wrapperBackFirst = document.createElement('div');
         this.wrapperBackSecond = document.createElement('div');
         this.wrapperBackThird = document.createElement('div');
 
-        this.wrapperBackFirst.classList = "wrapper__category_back--quest wrapper__category_back--first";
-        this.wrapperBackSecond.classList = "wrapper__category_back--quest wrapper__category_back--second";
-        this.wrapperBackThird.classList = "wrapper__category_back--quest wrapper__category_back--third";
+        this.wrapperBackFirst.classList = "wrapper__back_category--quest wrapper__back_category--first";
+        this.wrapperBackSecond.classList = "wrapper__back_category--quest wrapper__back_category--second";
+        this.wrapperBackThird.classList = "wrapper__back_category--quest wrapper__back_category--third";
     }
 
     initAppend() {

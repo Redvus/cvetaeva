@@ -1,5 +1,5 @@
 import { gsap } from "gsap";
-import { ArrowsAll } from "./ArrowsAll.js"
+import { ArrowsAll } from "./ArrowsAll.js";
 import { Settings } from "./Settings.js";
 import { Sounds } from "./Sounds.js";
 import { Category } from "./Category.js";
@@ -13,56 +13,40 @@ class CategoryLoad {
     constructor() {
         this.soundsLoad = new Sounds();
         this.arrowBackLoad = new ArrowsAll();
-        this.categoryLoad = new Category();
         this.settingsLoad = new Settings();
-        this.questionLoads_1 = new QuestCat_1();
-        this.questionLoads_2 = new QuestCat_2();
-        this.questionLoads_3 = new QuestCat_3();
         this.initLayout();
         this.initCategory();
         this.initСategoryBack();
         this.initCategorySettings();
-        this.initCategoryLoadAnim();
 
-        // this.initDev();
+        this.initDev();
     }
 
     initLayout() {
         this.wrapper = document.querySelector('.wrapper');
         this.container = document.querySelector('.container');
         this.wrapperTop = document.querySelector('.wrapper__top');
-        this.wrapperTopTitle = document.createElement('div');
         this.wrapperBottom = document.querySelector('.wrapper__bottom');
-        this.wrapperBack = document.querySelector('.wrapper__back');
         this.containerQuest = document.querySelector('.container-quest');
         this.backgroundMusicID = document.getElementById('backgroundMusicID');
-        this.wrapperIntro = document.querySelector('.wrapper__intro');
-        this.wrapperCategoryBack = document.querySelector('.wrapper__category_back');
-        this.containerCategoryBlock = document.createElement('div');
+        this.wrapperBack = document.querySelector('.wrapper__back');
+        this.wrapperIntro = document.querySelector('.wrapper__back_intro');
+        this.wrapperCategoryBack = document.querySelector('.wrapper__back_category');
         this.screenBrowserWidth = 400;
 
+        this.containerCategoryBlock = document.createElement('div');
         this.containerCategoryBlock.className = 'container__category';
-        this.container.appendChild(this.containerCategoryBlock);
 
         // Кнопки
         this.arrowBackLoad.arrowBack();
         this.arrowBackLoad.clearStorage();
         this.arrowBackClick = document.getElementById('arrowBack');
         this.settingsClick = document.getElementById('settingsClick');
+
+        // Appends
+        this.container.appendChild(this.containerCategoryBlock);
         this.wrapperBottom.appendChild(this.arrowBackClick);
         this.wrapperBottom.appendChild(this.settingsClick);
-
-        // Категории
-        this.categoryLoad.categoryMain('SecretHit', 'Тайный жар');
-        this.categoryLoad.categoryMain('ChildLove', 'Каждый стих – дитя любви');
-        this.categoryLoad.categoryMain('ThreeFaces', 'Три лика');
-        this.categoryLoad.categoryProgress('progressSecretHitValue', 'progressSecretHitAll');
-        this.categoryLoad.categoryProgress('progressChildLoveValue', 'progressChildLoveAll');
-        this.categoryLoad.categoryProgress('progressThreeFacesValue', 'progressThreeFacesAll');
-
-        this.categorySecretHit = document.getElementById('categorySecretHit');
-        this.categoryChildLove = document.getElementById('categoryChildLove');
-        this.categoryThreeFaces = document.getElementById('categoryThreeFaces');
     }
 
     initСategoryBack() {
@@ -72,9 +56,6 @@ class CategoryLoad {
                     this.wrapperBottom.removeChild(this.arrowBackClick);
                     this.wrapperBottom.removeChild(this.settingsClick);
                     this.container.removeChild(this.containerCategoryBlock);
-                    // container.removeChild(categorySecretHit);
-                    // container.removeChild(categoryChildLove);
-                    // container.removeChild(categoryThreeFaces);
                     new Intro();
                 }
             });
@@ -186,14 +167,29 @@ class CategoryLoad {
     }
 
     initCategory() {
+        this.categoryLoad = new Category();
+        this.questionLoads_1 = new QuestCat_1();
+        this.questionLoads_2 = new QuestCat_2();
+        this.questionLoads_3 = new QuestCat_3();
+        this.categoryLoad.categoryMain('SecretHit', 'Тайный жар');
+        this.categoryLoad.categoryMain('ChildLove', 'Каждый стих – дитя любви');
+        this.categoryLoad.categoryMain('ThreeFaces', 'Три лика');
+        this.categoryLoad.categoryProgress('progressSecretHitValue', 'progressSecretHitAll');
+        this.categoryLoad.categoryProgress('progressChildLoveValue', 'progressChildLoveAll');
+        this.categoryLoad.categoryProgress('progressThreeFacesValue', 'progressThreeFacesAll');
+
+        this.categorySecretHit = document.getElementById('categorySecretHit');
+        this.categoryChildLove = document.getElementById('categoryChildLove');
+        this.categoryThreeFaces = document.getElementById('categoryThreeFaces');
+
         this.progressSecretHitQuestSum = JSON.parse(localStorage.getItem('progressSecretHitAll'));
         this.progressChildLoveQuestSum = JSON.parse(localStorage.getItem('progressChildLoveAll'));
         this.progressThreeFacesQuestSum = JSON.parse(localStorage.getItem('progressThreeFacesAll'));
 
-        this.catBack = document.querySelector('.wrapper__category_back');
-        this.catBack_1 = document.querySelector('.wrapper__category_back--first');
-        this.catBack_2 = document.querySelector('.wrapper__category_back--second');
-        this.catBack_3 = document.querySelector('.wrapper__category_back--third');
+        this.catBack = document.querySelector('.wrapper__back_category');
+        this.catBack_1 = document.querySelector('.wrapper__back_category--first');
+        this.catBack_2 = document.querySelector('.wrapper__back_category--second');
+        this.catBack_3 = document.querySelector('.wrapper__back_category--third');
 
         //categoryCat_1 load
         this.categorySecretHit.addEventListener('click', () => {
@@ -214,6 +210,19 @@ class CategoryLoad {
                     delay: '-0.1',
                     stagger: 0.07
                 })
+                .to([
+                    this.settingsClick,
+                    this.arrowBackClick
+                ], {
+                    duration: 0.3,
+                    // delay: '-0.4',
+                    autoAlpha: 0
+                })
+                .to(this.catBack, {
+                    duration: '0.5',
+                    // delay: '0.2',
+                    autoAlpha: 0
+                });
             ;
         });
 
@@ -236,6 +245,16 @@ class CategoryLoad {
                     delay: '-0.1',
                     stagger: 0.07
                 })
+                .to([this.settingsClick, this.arrowBackClick], {
+                    duration: 0.3,
+                    // delay: '-0.4',
+                    autoAlpha: 0
+                })
+                .to([this.catBack, this.catBack_1], {
+                    duration: '0.5',
+                    // delay: '0.2',
+                    autoAlpha: 0
+                });
             ;
         });
 
@@ -258,6 +277,16 @@ class CategoryLoad {
                     delay: '-0.1',
                     stagger: 0.07
                 })
+                .to([this.settingsClick, this.arrowBackClick], {
+                    duration: 0.3,
+                    // delay: '-0.4',
+                    autoAlpha: 0
+                })
+                .to([this.catBack, this.catBack_1, this.catBack_2], {
+                    duration: '0.5',
+                    // delay: '0.2',
+                    autoAlpha: 0
+                });
             ;
         });
 
@@ -278,6 +307,8 @@ class CategoryLoad {
             this.categoryThreeFaces.style.userSelect = 'none';
             this.categoryThreeFaces.style.pointerEvents = 'none';
         }
+
+        this.initCategoryLoadAnim();
     }
 
     localSetCat_1() {
@@ -453,9 +484,8 @@ class CategoryLoad {
     }
 
     initDev() {
-        const introBack = document.querySelector('.wrapper__intro');
-        introBack.style.opacity = '0';
-        introBack.style.visibility = 'none';
+        this.wrapperIntro.style.opacity = '0';
+        this.wrapperIntro.style.visibility = 'none';
     }
 }
 

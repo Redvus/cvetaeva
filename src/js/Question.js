@@ -3,24 +3,34 @@ import { ArrowsAll } from "./ArrowsAll.js";
 import { Sounds } from "./Sounds.js";
 import {CategoryLoad} from "./CategoryLoad.js";
 
-    class Question {
+class Question {
 
-    questionBlock(questTitle,
-                  questQuestion,
-                  answerVar_1,
-                  answerVar_2,
-                  answerVar_3) {
+    constructor() {
+        this.arrowBackLoad = new ArrowsAll();
+        this.soundsLoad = new Sounds();
+        this.initLayout();
+    }
+
+    initLayout() {
+        this.wrapperBottom = document.querySelector('.wrapper__bottom');
+    }
+
+    questionBlock(
+        questTitle,
+        questQuestion,
+        answerVar_1,
+        answerVar_2,
+        answerVar_3) {
+
         const
-            arrowBackLoad = new ArrowsAll(),
-            soundsLoad = new Sounds(),
             containerQuest = document.querySelector('.container'),
             containerCategoryBlock = document.createElement('div'),
             wrapperCategoryTitle = document.querySelector('.wrapper__top_title'),
             wrapperTop = document.querySelector('.wrapper__top'),
             containerCategoryBlockTitle = document.createElement('h2'),
             containerCategoryBlockText = document.createElement('div'),
-            containerCategoryBlockButtons = document.createElement('ul'),
-            wrapperBottom = document.querySelector('.wrapper__bottom')
+            containerCategoryBlockButtons = document.createElement('ul')
+
         ;
 
         containerCategoryBlock.className = 'container__category';
@@ -68,8 +78,8 @@ import {CategoryLoad} from "./CategoryLoad.js";
             el.style.top = positionLiTop[idx];
         });
 
-        // arrowBackLoad.arrowBackQuest();
-        // arrowBackLoad.arrowSetting();
+        // this.arrowBackLoad.arrowBackQuest();
+        // this.arrowBackLoad.arrowSetting();
 
         const
             settingsClick = document.getElementById('settingsClick'),
@@ -112,38 +122,38 @@ import {CategoryLoad} from "./CategoryLoad.js";
         }
         questionBlockAnim();
 
-        arrowBackLoad.arrowBack();
-        const arrowBackClick = document.getElementById('arrowBack');
-        wrapperBottom.appendChild(arrowBackClick);
+        this.arrowBackLoad.arrowBack();
+        this.arrowBackClick = document.getElementById('arrowBack');
+        this.wrapperBottom.appendChild(this.arrowBackClick);
 
-        arrowBackClick.addEventListener('click', () => {
+        this.arrowBackClick.addEventListener('click', () => {
             let tl = gsap.timeline({
                 onComplete: () => {
-                    wrapperBottom.removeChild(arrowBackClick);
+                    this.wrapperBottom.removeChild(this.arrowBackClick);
                     // wrapperBottom.removeChild(settingsClick);
                     containerQuest.removeChild(containerCategoryBlock);
                     wrapperTop.removeChild(wrapperCategoryTitle);
                     // container.removeChild(categorySecretHit);
                     // container.removeChild(categoryChildLove);
                     // container.removeChild(categoryThreeFaces);
-                    wrapperCategoryBackQuest.forEach(el => {
-                        gsap.to(el, {
-                            duration: '0.5',
-                            autoAlpha: 0,
-                            zIndex: '-1'
-                        });
-                    });
-                    gsap.to(wrapperCategoryBack, {
-                        delay: '0.2',
-                        autoAlpha: 1,
-                        zIndex: '1'
-                    });
+                    // wrapperCategoryBackQuest.forEach(el => {
+                    //     gsap.to(el, {
+                    //         duration: '0.5',
+                    //         autoAlpha: 0,
+                    //         zIndex: '-1'
+                    //     });
+                    // });
+                    // gsap.to(wrapperCategoryBack, {
+                    //     delay: '0.2',
+                    //     autoAlpha: 1,
+                    //     zIndex: '1'
+                    // });
                     // wrapperBack.appendChild(catBack_1);
                     // setTimeout(() => {
                     //     wrapperBack.removeChild(catBack);
                     // }, 2000);
-                    const initCategory = new CategoryLoad();
-                    initCategory.initCategory();
+                    new CategoryLoad();
+                    // initCategory.initCategory();
                 }
             });
             tl
@@ -161,6 +171,10 @@ import {CategoryLoad} from "./CategoryLoad.js";
         });
     }
 
+    // initBackClick() {
+
+    // }
+
     questionBlockNext(
         questTitle,
         questQuestion,
@@ -169,8 +183,6 @@ import {CategoryLoad} from "./CategoryLoad.js";
         answerVar_3) {
 
         const
-            arrowBackLoad = new ArrowsAll(),
-            soundsLoad = new Sounds(),
             containerQuest = document.querySelector('.container'),
             containerCategoryBlock = document.createElement('div'),
             wrapperCategoryTitle = document.querySelector('.wrapper__top_title'),
@@ -272,8 +284,7 @@ import {CategoryLoad} from "./CategoryLoad.js";
             answerRightVar = ['Правильно!', 'Все верно!', 'Именно так!', 'Точно так!', 'Так держать!'],
             answerRightVarView = answerRightVar[Math.floor(Math.random() * answerRightVar.length)],
             answerBlockWrongText = document.getElementById('answerWrong'),
-            answerNextClick = document.createElement('div'),
-            soundsLoad = new Sounds()
+            answerNextClick = document.createElement('div')
         ;
 
         let answerVar_1 = document.getElementById('answerVar_1'),
@@ -369,7 +380,7 @@ import {CategoryLoad} from "./CategoryLoad.js";
                             let tl = gsap.timeline();
                             answerLiRight[i].className += 'question__block_list--right';
                             answerLiRight[i].style.userSelect = 'none';
-                            soundsLoad.rightAnswer('./sounds/rightAnswer_1.ogg');
+                            this.soundsLoad.rightAnswer('./sounds/rightAnswer_1.ogg');
                             tl
                                 .to(el, {
                                     top: '9%',
@@ -392,7 +403,7 @@ import {CategoryLoad} from "./CategoryLoad.js";
                             let tl = gsap.timeline();
                             answerLiRight[i].className += 'question__block_list--wrong';
                             answerLiRight[i].style.userSelect = 'none';
-                            soundsLoad.rightAnswer('./sounds/wrongAnswer.ogg');
+                            this.soundsLoad.rightAnswer('./sounds/wrongAnswer.ogg');
                             tl
                                 .to(el, {
                                     top: '9%',
@@ -415,7 +426,7 @@ import {CategoryLoad} from "./CategoryLoad.js";
                             let tl = gsap.timeline();
                             answerLiRight[i].className += 'question__block_list--wrong';
                             answerLiRight[i].style.userSelect = 'none';
-                            soundsLoad.rightAnswer('./sounds/wrongAnswer.ogg');
+                            this.soundsLoad.rightAnswer('./sounds/wrongAnswer.ogg');
                             tl
                                 .to(el, {
                                     top: '9%',
@@ -438,7 +449,7 @@ import {CategoryLoad} from "./CategoryLoad.js";
                             let tl = gsap.timeline();
                             answerLiRight[i].className += 'question__block_list--wrong';
                             answerLiRight[i].style.userSelect = 'none';
-                            soundsLoad.rightAnswer('./sounds/wrongAnswer.ogg');
+                            this.soundsLoad.rightAnswer('./sounds/wrongAnswer.ogg');
                             tl
                                 .to(el, {
                                     top: '9%',

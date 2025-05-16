@@ -35,7 +35,7 @@ class Authors {
 		this.containerAbout = document.createElement('div');
 		this.wrapperTop = document.querySelector('.wrapper__top');
 		this.wrapperBottom = document.querySelector('.wrapper__bottom');
-		this.wrapperIntro = document.querySelector('.wrapper__intro');
+		this.wrapperIntro = document.querySelector('.wrapper__back_intro');
 
         // if (document.body.clientWidth < 570 || screen.width < 570) {
         //     this.container.style.width = 'calc(100% - 2rem)';
