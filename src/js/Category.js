@@ -77,6 +77,7 @@ class Category {
         `;
 
         wrapperTop.appendChild(wrapperCategoryTitle);
+        this.catQuestAnim();
     }
 
     categoryQuestSimple(categoryTitle, categoryBackID) {
@@ -165,7 +166,7 @@ class Category {
         tl
             .from(this.wrapperCatTitle, {
                 duration: '0.3',
-                delay: '-0.1',
+                // delay: '-0.1',
                 autoAlpha: 0,
                 y: '-10%'
             })

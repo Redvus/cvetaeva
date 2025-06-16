@@ -88,7 +88,8 @@ class Question {
             containerCategoryBlockTextDiv = document.querySelector('.container-quest__bottom_text'),
             containerCategoryBlockButton = document.querySelectorAll('.container-quest__bottom_buttons > li'),
             wrapperBackPreloader = document.querySelector('.wrapper__preloader'),
-            wrapperCategoryBack = document.querySelector('.wrapper__category_back'),
+            wrapperBackCategory = document.querySelector('.wrapper__back_category'),
+            wrapperBackCategoryQuest = document.querySelectorAll('.wrapper__back_category--quest'),
             wrapperBack = document.querySelector('.wrapper__back'),
             wrapperCategoryBackQuest_1 = document.querySelector('.wrapper__category_back--first'),
             wrapperCategoryBackQuest_2 = document.querySelector('.wrapper__category_back--second'),
@@ -157,15 +158,25 @@ class Question {
                 }
             });
             tl
-                // .to(wrapperTopTitle, {
-                //     autoAlpha: 0,
-                //     delay: '-0.1',
-                //     y: '-10%'
-                // })
+                .to(wrapperCategoryTitle, {
+                    autoAlpha: 0,
+                    delay: '-0.1',
+                    y: '-10%'
+                })
                 .to(containerCategoryBlock, {
                     autoAlpha: 0,
                     delay: '-0.1',
                     stagger: 0.07
+                })
+                .to(wrapperBackCategory, {
+                    autoAlpha: 1,
+                    duration: '0.6',
+                    delay: '-0.2'
+                })
+                .to(wrapperBackCategoryQuest, {
+                    autoAlpha: 1,
+                    duration: '0.2'
+                    // delay: '-0.1'
                 })
             ;
         });

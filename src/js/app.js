@@ -10,9 +10,9 @@ class Game {
         this.initLayout();
         this.initLayoutBack();
         this.initAppend();
-        // new Intro();
+        new Intro();
 
-        new CategoryLoad();
+        // new CategoryLoad();
     }
 
     initLayout() {
