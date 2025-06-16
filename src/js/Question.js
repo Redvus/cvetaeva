@@ -82,7 +82,6 @@ class Question {
         // this.arrowBackLoad.arrowSetting();
 
         const
-            settingsClick = document.getElementById('settingsClick'),
             containerQuestBlock = document.querySelector('.container-quest'),
             containerQuestBlockBottom = document.querySelector('.container-quest__bottom'),
             containerCategoryBlockTextDiv = document.querySelector('.container-quest__bottom_text'),
@@ -127,6 +126,13 @@ class Question {
         this.arrowBackClick = document.getElementById('arrowBack');
         this.wrapperBottom.appendChild(this.arrowBackClick);
 
+        gsap.from(this.arrowBackClick, {
+            duration: '0.3',
+            delay: '-0.1',
+            autoAlpha: 0,
+            y: '10%'
+        })
+
         this.arrowBackClick.addEventListener('click', () => {
             let tl = gsap.timeline({
                 onComplete: () => {
@@ -162,6 +168,11 @@ class Question {
                     autoAlpha: 0,
                     delay: '-0.1',
                     y: '-10%'
+                })
+                .to(this.arrowBackClick, {
+                    autoAlpha: 0,
+                    duration: '0.2',
+                    delay: '-0.1'
                 })
                 .to(containerCategoryBlock, {
                     autoAlpha: 0,

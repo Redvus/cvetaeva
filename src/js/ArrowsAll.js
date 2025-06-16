@@ -22,8 +22,8 @@ class ArrowsAll {
 
         function arrowBackAnim() {
             let arrowAnim = gsap.from(arrowBackLoad, {
-                duration: 1,
-                delay: '0.4',
+                duration: 0.3,
+                delay: '-0.1',
                 autoAlpha: 0
             });
         }
