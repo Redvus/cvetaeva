@@ -1,4 +1,5 @@
 import '../scss/main.scss';
+import { Preloader } from "./Preloader.js";
 import { Intro } from "./Intro.js";
 import { Authors } from "./Authors.js";
 import { About } from "./About.js";
@@ -8,6 +9,7 @@ class Game {
 
     constructor() {
         this.initLayout();
+        new Preloader(2);
         this.initLayoutBack();
         this.initAppend();
         new Intro();
