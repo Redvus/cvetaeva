@@ -402,7 +402,7 @@ class Question {
                             let tl = gsap.timeline();
                             answerLiRight[i].className += 'question__block_list--right';
                             answerLiRight[i].style.userSelect = 'none';
-                            this.soundsLoad.rightAnswer('./sounds/rightAnswer_1.ogg');
+                            this.soundsLoad.rightAnswer('./assets/games/cvetaeva/sounds/rightAnswer_1.ogg');
                             tl
                                 .to(el, {
                                     top: '9%',
@@ -425,7 +425,7 @@ class Question {
                             let tl = gsap.timeline();
                             answerLiRight[i].className += 'question__block_list--wrong';
                             answerLiRight[i].style.userSelect = 'none';
-                            this.soundsLoad.rightAnswer('./sounds/wrongAnswer.ogg');
+                            this.soundsLoad.rightAnswer('./assets/games/cvetaeva/sounds/wrongAnswer.ogg');
                             tl
                                 .to(el, {
                                     top: '9%',
@@ -448,7 +448,7 @@ class Question {
                             let tl = gsap.timeline();
                             answerLiRight[i].className += 'question__block_list--wrong';
                             answerLiRight[i].style.userSelect = 'none';
-                            this.soundsLoad.rightAnswer('./sounds/wrongAnswer.ogg');
+                            this.soundsLoad.rightAnswer('./assets/games/cvetaeva/sounds/wrongAnswer.ogg');
                             tl
                                 .to(el, {
                                     top: '9%',
@@ -471,7 +471,7 @@ class Question {
                             let tl = gsap.timeline();
                             answerLiRight[i].className += 'question__block_list--wrong';
                             answerLiRight[i].style.userSelect = 'none';
-                            this.soundsLoad.rightAnswer('./sounds/wrongAnswer.ogg');
+                            this.soundsLoad.rightAnswer('./assets/games/cvetaeva/sounds/wrongAnswer.ogg');
                             tl
                                 .to(el, {
                                     top: '9%',
