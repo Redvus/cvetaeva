@@ -1625,7 +1625,7 @@ class QuestCat_2 {
 
     questionCat_2_20() {
         const questNum = 20;
-        const answerWrightNum = 1;
+        const answerWrightNum = 0;
 
         if (localStorage.getItem(`progressChildLove_${questNum}`) === null ||
             localStorage.getItem(`progressChildLove_${questNum}`) >= 0) {

@@ -29,7 +29,7 @@ class QuestCat_1 {
 
     questionCat_1_1() {
         const questNum = 1;
-        const answerWrightNum = 1;
+        const answerWrightNum = 0;
 
         if (localStorage.getItem(`progressSecretHit_${questNum}`) === null ||
             localStorage.getItem(`progressSecretHit_${questNum}`) >= 0) {
